@@ -33,6 +33,11 @@ class JyMediaAnimation:
             }
         }
 
+    RETURN_TYPES = ("MEDIA_GROUP",)
+    RETURN_NAMES = ("媒体组",)
+    FUNCTION = "animation_video"
+    CATEGORY = "剪映节点"
+
     def animation_video(self, 文件路径, 素材开始时间, 轨道开始时间, 持续时间, 媒体组=[], 入场动画=None, 组合动画=None, 出场动画=None):
         if not os.path.exists(文件路径):
             raise ValueError(f"文件不存在: {文件路径}")
@@ -68,6 +73,11 @@ class JyMediaNative:
             }
         }
 
+    RETURN_TYPES = ("MEDIA_GROUP",)
+    RETURN_NAMES = ("媒体组",)
+    FUNCTION = "jy_media"
+    CATEGORY = "剪映节点"
+
     def jy_media(self, 文件路径, 素材开始时间, 轨道开始时间, 持续时间, 媒体组=[]):
         if not os.path.exists(文件路径):
             raise ValueError(f"文件不存在: {文件路径}")
@@ -94,6 +104,11 @@ class JyAudioNative:
                 "音频组": ("AUDIO_GROUP",),
             }
         }
+
+    RETURN_TYPES = ("AUDIO_GROUP",)
+    RETURN_NAMES = ("音频组",)
+    FUNCTION = "jy_audio"
+    CATEGORY = "剪映节点"
 
     def jy_audio(self, 文件路径, 素材开始时间, 轨道开始时间, 持续时间, 音频组=[]):
         if not os.path.exists(文件路径):
@@ -125,6 +140,11 @@ class JyCaptionsNative:
             }
         }
 
+    RETURN_TYPES = ("CAPTIONS_GROUP",)
+    RETURN_NAMES = ("字幕组",)
+    FUNCTION = "jy_captions"
+    CATEGORY = "剪映节点"
+
     def jy_captions(self, 文字内容, 颜色, 字体大小, X轴位移, Y轴位移, 轨道开始时间, 持续时间, 字幕组=[]):
         captions={"subtitle": 文字内容,"color":颜色,"size":字体大小,"transform_x":X轴位移,"transform_y":Y轴位移, "start_at_track": int(轨道开始时间*1000000), "duration": int(持续时间*1000000)}
         
@@ -148,6 +168,11 @@ class JyEffectNative:
             }
         }
 
+    RETURN_TYPES = ("EFFECT_GROUP",)
+    RETURN_NAMES = ("特效组",)
+    FUNCTION = "jy_effect"
+    CATEGORY = "剪映节点"
+
     def jy_effect(self, 特效名称, 轨道开始时间, 持续时间, 特效组=[]):
         effect={"effect_name_or_resource_id": 特效名称, "start": int(轨道开始时间*1000000), "duration": int(持续时间*1000000)}
         
@@ -170,6 +195,11 @@ class JyTransition:
                 "后媒体": ("MEDIA_GROUP",),
             }
         }
+
+    RETURN_TYPES = ("MEDIA_GROUP", "TRANSITION")
+    RETURN_NAMES = ("媒体组", "转场")
+    FUNCTION = "jy_transition"
+    CATEGORY = "剪映节点"
 
     def jy_transition(self, 转场名称, 持续时间, 前媒体, 后媒体=None, 媒体组=[]):
         if 后媒体:
