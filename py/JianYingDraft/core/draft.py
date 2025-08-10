@@ -10,7 +10,7 @@
 import os
 import time
 
-from ...src.wechat.config import Config
+from ..utils.config import Config
 from ..utils import tools
 from .media import Media
 from .mediaFactory import MediaFactory

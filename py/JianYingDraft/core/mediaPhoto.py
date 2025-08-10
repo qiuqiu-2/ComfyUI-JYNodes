@@ -6,7 +6,7 @@
  * @creator: ShanDong Xiedali
  * @company: HiLand & RainyTop
 """
-from ...src.wechat.config import Config
+from ..utils.config import Config
 
 from . import template
 from .mediaVideo import MediaVideo
