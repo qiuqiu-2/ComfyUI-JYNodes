@@ -8,8 +8,8 @@
 """
 import os
 
-from BasicLibrary.data.stringHelper import StringHelper
-from BasicLibrary.environment.dynamicImporter import DynamicImporter
+from ..utils.string_helper import StringHelper
+from ..utils.dynamic_importer import DynamicImporter
 from pymediainfo import MediaInfo
 
 

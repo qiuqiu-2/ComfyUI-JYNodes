@@ -1,0 +1,31 @@
+# ComfyUI-JYNodes 剪映专版依赖库
+
+# 媒体信息处理
+pymediainfo>=6.0.1
+
+# 异步HTTP请求
+aiohttp>=3.8.0
+
+# 进度条显示
+tqdm>=4.64.0
+
+# 数据处理
+numpy>=1.21.0
+
+# 图像处理
+Pillow>=9.0.0
+opencv-python>=4.5.0
+
+# 网络请求
+requests>=2.25.0
+
+# 类型提示
+typing-extensions>=4.0.0
+
+# PyTorch相关（ComfyUI通常已安装）
+torch>=1.12.0
+
+# 注意：以下库在代码中引用但可能不需要安装
+# BasicLibrary - 看起来是内部库，可能需要检查
+# folder_paths - ComfyUI内置模块
+# server - ComfyUI内置模块
