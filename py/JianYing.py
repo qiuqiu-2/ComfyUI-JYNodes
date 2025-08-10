@@ -13,7 +13,7 @@ import json
 
 class JyMediaAnimation:
     """
-    带动画图片/视频
+    剪映带动画的媒体
     """
     def __init__(self):
         pass
@@ -36,7 +36,7 @@ class JyMediaAnimation:
         }
 
     RETURN_TYPES = ("带动画媒体","媒体组",)
-    RETURN_NAMES = ("带动画图片/视频","图片/视频组",)
+    RETURN_NAMES = ("带动画的媒体","媒体组",)
 
     OUTPUT_NODE = False     #是否为输出节点
 
@@ -61,7 +61,7 @@ class JyMediaAnimation:
 
 class JyMediaNative:
     """
-    不带动画图片/视频
+    剪映添加媒体
     """
     def __init__(self):
         pass
@@ -81,7 +81,7 @@ class JyMediaNative:
         }
 
     RETURN_TYPES = ("媒体","媒体组",)
-    RETURN_NAMES = ("图片/视频","图片/视频组",)
+    RETURN_NAMES = ("媒体","媒体组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_media"
 
@@ -97,7 +97,7 @@ class JyMediaNative:
 
 class JyAudioNative:
     """
-    音频
+    剪映添加音频
     """
     def __init__(self):
         pass
@@ -134,7 +134,7 @@ class JyAudioNative:
 
 class JyCaptionsNative:
     """
-    字幕
+    剪映添加字幕
     """
     def __init__(self):
         pass
@@ -173,7 +173,7 @@ class JyCaptionsNative:
 
 class JyEffectNative:
     """
-    特效
+    剪映添加特效
     """
     def __init__(self):
         pass
@@ -208,7 +208,7 @@ class JyEffectNative:
 
 class JyTransition:
     """
-    转场
+    剪映添加转场
     """
     def __init__(self):
         pass
@@ -228,7 +228,7 @@ class JyTransition:
         }
 
     RETURN_TYPES = ("转场","媒体组",)
-    RETURN_NAMES = ("转场","图片/视频组",)
+    RETURN_NAMES = ("转场","媒体组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_transition"
 
@@ -251,7 +251,7 @@ class JyTransition:
     
 class JyAnimationIn:
     """
-    入场动画
+    剪映入场动画
     """
     def __init__(self):
         pass
@@ -283,7 +283,7 @@ class JyAnimationIn:
 
 class JyAnimationGroup:
     """
-    入场动画
+    剪映动画组
     """
     def __init__(self):
         pass
@@ -299,7 +299,7 @@ class JyAnimationGroup:
         }
 
     RETURN_TYPES = ("动画组",)
-    RETURN_NAMES = ("入场动画",)
+    RETURN_NAMES = ("动画组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_animation_group"
 
@@ -316,7 +316,7 @@ class JyAnimationGroup:
     
 class JyAnimationOut:
     """
-    出场动画
+    剪映出场动画
     """
     def __init__(self):
         pass
@@ -348,6 +348,9 @@ class JyAnimationOut:
     
 
 class JyMultiMediaGroup:
+    """
+    剪映媒体组
+    """
     def __init__(self):
         pass
 
@@ -362,7 +365,7 @@ class JyMultiMediaGroup:
             }
         }
 
-    RETURN_TYPES = ("MEIDA_GROUP",)
+    RETURN_TYPES = ("媒体组",)
     FUNCTION = "media_group"
     OUTPUT_NODE = False
     CATEGORY = "剪映节点"
@@ -380,6 +383,9 @@ class JyMultiMediaGroup:
         return (mediaList, )
     
 class JyMultiAudioGroup:
+    """
+    剪映音频组
+    """
     def __init__(self):
         pass
 
@@ -394,7 +400,7 @@ class JyMultiAudioGroup:
             }
         }
 
-    RETURN_TYPES = ("AUDIO_GROUP",)
+    RETURN_TYPES = ("音频组",)
     FUNCTION = "audio_group"
     OUTPUT_NODE = False
     CATEGORY = "剪映节点"
@@ -409,6 +415,9 @@ class JyMultiAudioGroup:
         return (mediaList, )
     
 class JyMultiCaptionsGroup:
+    """
+    剪映字幕组
+    """
     def __init__(self):
         pass
 
@@ -423,7 +432,7 @@ class JyMultiCaptionsGroup:
             }
         }
 
-    RETURN_TYPES = ("CAPTIONS_GROUP",)
+    RETURN_TYPES = ("字幕组",)
     FUNCTION = "captions_group"
     OUTPUT_NODE = False
     CATEGORY = "剪映节点"
@@ -438,6 +447,9 @@ class JyMultiCaptionsGroup:
         return (mediaList, )
     
 class JyMultiEffectGroup:
+    """
+    剪映特效组
+    """
     def __init__(self):
         pass
 
@@ -452,7 +464,7 @@ class JyMultiEffectGroup:
             }
         }
 
-    RETURN_TYPES = ("EFFECT_GROUP",)
+    RETURN_TYPES = ("特效组",)
     FUNCTION = "effect_group"
     OUTPUT_NODE = False
     CATEGORY = "剪映节点"
@@ -467,6 +479,9 @@ class JyMultiEffectGroup:
         return (mediaList, )
 
 class JyAudio2CaptionsGroup:
+    """
+    剪映音频转字幕
+    """
     def __init__(self):
         pass
     @classmethod
@@ -482,11 +497,11 @@ class JyAudio2CaptionsGroup:
                 "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "垂直位移, 单位为半个画布高"}),
             },
             "optional": {
-                "captions_group":("CAPTIONS_GROUP",)
+                "captions_group":("字幕组",)
             }
         }
 
-    RETURN_TYPES = ("CAPTIONS_GROUP",)
+    RETURN_TYPES = ("字幕组",)
     RETURN_NAMES = ("字幕组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_audio2captions_group"
@@ -512,6 +527,9 @@ class JyAudio2CaptionsGroup:
         return (captions_group,)
 
 class JySaveDraft:
+    """
+    剪映保存草稿
+    """
     def __init__(self):
         pass
 
@@ -604,6 +622,9 @@ importBat='''python importDraft.py
 pause
 '''
 class JySaveOutDraft:
+    """
+    剪映草稿下载
+    """
     def __init__(self):
         self.output_dir = folder_paths.get_temp_directory()
         self.type = "temp"
@@ -714,20 +735,20 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "JyMediaAnimation": "带动画媒体",
-    "JyMediaNative": "基础媒体",
-    "JyAudioNative": "音频文件",
-    "JyCaptionsNative": "字幕文本",
-    "JyEffectNative": "视频特效",
-    "JyTransition": "转场效果",
-    "JyAnimationIn": "入场动画",
-    "JyAnimationGroup": "组合动画",
-    "JyAnimationOut": "出场动画",
-    "JyMultiMediaGroup": "媒体组",
-    "JyMultiAudioGroup": "音频组",
-    "JyMultiCaptionsGroup": "字幕组",
-    "JyMultiEffectGroup": "特效组",
-    "JyAudio2CaptionsGroup": "音频转字幕",
-    "JySaveDraft": "保存草稿",
-    "JySaveOutDraft": "打包下载",
+    "JyMediaAnimation": "剪映带动画的媒体",
+    "JyMediaNative": "剪映添加媒体",
+    "JyAudioNative": "剪映添加音频",
+    "JyCaptionsNative": "剪映添加字幕",
+    "JyEffectNative": "剪映添加特效",
+    "JyTransition": "剪映添加转场",
+    "JyAnimationIn": "剪映入场动画",
+    "JyAnimationGroup": "剪映动画组",
+    "JyAnimationOut": "剪映出场动画",
+    "JyMultiMediaGroup": "剪映媒体组",
+    "JyMultiAudioGroup": "剪映音频组",
+    "JyMultiCaptionsGroup": "剪映字幕组",
+    "JyMultiEffectGroup": "剪映特效组",
+    "JyAudio2CaptionsGroup": "剪映音频转字幕",
+    "JySaveDraft": "剪映保存草稿",
+    "JySaveOutDraft": "剪映草稿下载",
 }
