@@ -1,7 +1,13 @@
-# ComfyUI 剪映节点
+# ComfyUI JYNodes - 剪映节点
 
 ## 🎯 项目简介
 ComfyUI_JYNodes 是一个专为剪映设计的 ComfyUI 插件，专注于视频草稿生成。它提供了完整的剪映草稿创建功能，让您可以通过 ComfyUI 的可视化界面批量制作剪映视频草稿。
+
+## 🆕 最新更新
+- ✅ 项目重命名：统一使用 `JYNodes` 命名规范
+- ✅ 节点分类：所有节点归类到「剪映节点」
+- ✅ 中文优化：节点名称和参数全面中文化
+- ✅ 零依赖：去除冗余依赖，使用更轻量
 
 ## ✨ 核心功能
 
@@ -25,37 +31,59 @@ ComfyUI_JYNodes 是一个专为剪映设计的 ComfyUI 插件，专注于视频�
 ## 🚀 快速开始
 
 ### 1. 安装
-将本插件放入 ComfyUI 的 `custom_nodes` 目录即可使用。
+```bash
+# 方法1：直接下载
+下载本项目，解压到 ComfyUI 的 `custom_nodes/ComfyUI_JYNodes` 目录
 
-### 2. 基础工作流
+# 方法2：git克隆
+git clone [项目地址] ComfyUI/custom_nodes/ComfyUI_JYNodes
+```
+
+### 2. 依赖安装（可选）
+```bash
+# 大部分依赖已由ComfyUI提供，只需安装：
+pip install pymediainfo requests
+```
+
+### 3. 基础工作流
 ```
 媒体素材 → 组合节点 → 保存草稿
 ```
 
-### 3. 完整工作流示例
+### 4. 完整工作流示例
 ```
-1. JyMediaAnimation (带动画媒体)
+1. 媒体素材 (图片/视频)
    ↓
-2. JyAudioNative (音频)
+2. 音频节点 (背景音乐)
    ↓  
-3. JyCaptionsNative (字幕)
+3. 字幕节点 (文字内容)
    ↓
-4. JyTransition (转场)
+4. 动画节点 (入场/出场效果)
    ↓
-5. JySaveDraft (保存)
+5. 保存草稿 (生成.draft文件)
 ```
+
+### 5. 首次使用检查清单
+- ✅ 插件已放入正确目录
+- ✅ 重启ComfyUI
+- ✅ 在节点面板找到「剪映节点」分类
+- ✅ 尝试简单工作流测试
 
 ## 📋 节点说明
 
-| 节点类型 | 功能描述 |
-|---------|----------|
-| **JyMediaAnimation** | 带动画效果的图片/视频 |
-| **JyMediaNative** | 普通图片/视频 |
-| **JyAudioNative** | 音频素材 |
-| **JyCaptionsNative** | 文字字幕 |
-| **JyEffectNative** | 视觉特效 |
-| **JyTransition** | 转场效果 |
-| **JySaveDraft** | 保存剪映草稿 |
+| 节点类型 | 功能描述 | 中文名称 |
+|---------|----------|----------|
+| **JyMediaAnimation** | 带动画效果的图片/视频 | 动画媒体 |
+| **JyMediaNative** | 普通图片/视频 | 媒体素材 |
+| **JyAudioNative** | 音频素材 | 音频节点 |
+| **JyCaptionsNative** | 文字字幕 | 字幕节点 |
+| **JyEffectNative** | 视觉特效 | 特效节点 |
+| **JyTransition** | 转场效果 | 转场节点 |
+| **JyAnimationIn** | 入场动画 | 入场动画 |
+| **JyAnimationOut** | 出场动画 | 出场动画 |
+| **JyAnimationGroup** | 组合动画 | 组合动画 |
+| **JySaveDraft** | 保存剪映草稿 | 保存草稿 |
+| **JySaveOutDraft** | 保存并输出 | 输出草稿 |
 
 ## 🎨 动画类型
 - 入场动画：淡入、滑入、缩放等
@@ -70,10 +98,16 @@ ComfyUI_JYNodes 是一个专为剪映设计的 ComfyUI 插件，专注于视频�
 ## 📁 文件结构
 ```
 ComfyUI_JYNodes/
-├── py/LamJianYing.py          # 主节点文件
-├── py/JianYingDraft/        # 剪映核心库
-├── js/JySaveOutDraft.js     # 界面交互
-└── README.md                # 本文档
+├── JYNodes.py                 # 主节点注册文件
+├── JYNodes.json               # 节点配置
+├── py/JianYing.py            # 剪映节点实现
+├── py/JianYingDraft/         # 剪映核心库
+│   ├── core/                 # 核心功能模块
+│   ├── utils/                # 工具函数
+│   └── template/             # 模板文件
+├── js/JySaveOutDraft.js      # 界面交互
+├── config/translations.csv   # 翻译配置
+└── README.md                 # 本文档
 ```
 
 ## 🎯 使用场景
@@ -87,6 +121,14 @@ ComfyUI_JYNodes/
 - **跨平台** - 支持 Windows/Mac/Linux
 - **高效** - 批量处理大量素材
 - **兼容** - 完美支持剪映最新版本
+- **轻量** - 精简依赖，快速启动
+- **中文** - 完整中文化界面
+
+## 📱 剪映兼容性
+- ✅ 剪映专业版 3.0+
+- ✅ 剪映手机版 8.0+
+- ✅ 剪映Web版
+- ✅ 支持.draft格式文件直接打开
 
 ## 📞 支持
 如有问题，请检查：

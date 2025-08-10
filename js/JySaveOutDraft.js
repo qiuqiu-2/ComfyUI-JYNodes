@@ -34,7 +34,7 @@ app.registerExtension({
             nodeType.prototype.onNodeCreated = function() {
                 const r = onNodeCreated?.apply(this, arguments);
 
-                this.addDOMWidget('downs',"list",$el('div.lam_down',[$el('button',{
+                this.addDOMWidget('downs',"list",$el('div.jynodes_down',[$el('button',{
                     textContent:'下载草稿',
                     style:{},
                     onclick:()=>{

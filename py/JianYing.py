@@ -28,21 +28,21 @@ class JyMediaAnimation:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "meida_group":("MEIDA_GROUP",),
+                "meida_group":("媒体组",),
                 "animation_in":("ANIMATION_IN",),
-                "animation_group":("ANIMATION_GROUP",),
+                "animation_group":("动画组",),
                 "animation_out":("ANIMATION_OUT",),
             }
         }
 
-    RETURN_TYPES = ("ANIMATION_MEIDA","MEIDA_GROUP",)
+    RETURN_TYPES = ("带动画媒体","媒体组",)
     RETURN_NAMES = ("带动画图片/视频","图片/视频组",)
 
     OUTPUT_NODE = False     #是否为输出节点
 
     FUNCTION = "animation_video"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def animation_video(self, file_path, start_in_media, start_at_track, duration,meida_group=[], animation_in:AnimationData=None, animation_group:AnimationData=None, animation_out:AnimationData=None):
         if not os.path.exists(file_path):
@@ -76,16 +76,16 @@ class JyMediaNative:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "meida_group":("MEIDA_GROUP",)
+                "meida_group":("媒体组",)
             }
         }
 
-    RETURN_TYPES = ("MEIDA","MEIDA_GROUP",)
+    RETURN_TYPES = ("媒体","媒体组",)
     RETURN_NAMES = ("图片/视频","图片/视频组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_media"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_media(self, file_path, start_in_media, start_at_track, duration,meida_group=[]):
         if not os.path.exists(file_path):
@@ -112,17 +112,17 @@ class JyAudioNative:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "audio_group":("AUDIO_GROUP",)
+                "audio_group":("音频组",)
             }
         }
 
-    RETURN_TYPES = ("JY_AUDIO","AUDIO_GROUP",)
+    RETURN_TYPES = ("JY_AUDIO","音频组",)
     RETURN_NAMES = ("音频","音频组",)
 
     OUTPUT_NODE = False
     FUNCTION = "jy_audio"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_audio(self, file_path, start_in_media, start_at_track, duration,audio_group=[]):
         if not os.path.exists(file_path):
@@ -152,17 +152,17 @@ class JyCaptionsNative:
                 "duration": ("FLOAT", {"default": 0.1, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "captions_group":("CAPTIONS_GROUP",)
+                "captions_group":("字幕组",)
             }
         }
 
-    RETURN_TYPES = ("JY_CAPTIONS","CAPTIONS_GROUP",)
+    RETURN_TYPES = ("JY_CAPTIONS","字幕组",)
     RETURN_NAMES = ("字幕","字幕组",)
 
     OUTPUT_NODE = False
     FUNCTION = "jy_captions"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_captions(self, text, color,size,transform_x,transform_y, start_at_track, duration,captions_group=[]):
         captions_group=[*captions_group]
@@ -187,16 +187,16 @@ class JyEffectNative:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "effect_group":("EFFECT_GROUP",)
+                "effect_group":("特效组",)
             }
         }
 
-    RETURN_TYPES = ("JY_EFFECT","EFFECT_GROUP",)
+    RETURN_TYPES = ("JY_EFFECT","特效组",)
     RETURN_NAMES = ("特效","特效组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_effect"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_effect(self, effect, start_at_track, duration,effect_group=[]):
         #拷贝一份
@@ -223,16 +223,16 @@ class JyTransition:
             },
             "optional": {
                 "meida_in":("MEIDA",),
-                "meida_group":("MEIDA_GROUP",)
+                "meida_group":("媒体组",)
             }
         }
 
-    RETURN_TYPES = ("TRANSITION","MEIDA_GROUP",)
+    RETURN_TYPES = ("转场","媒体组",)
     RETURN_NAMES = ("转场","图片/视频组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_transition"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_transition(self, transition, duration,meida_out,meida_in=None,meida_group=[]):
         meida_group=[*meida_group]
@@ -271,7 +271,7 @@ class JyAnimationIn:
     OUTPUT_NODE = False
     FUNCTION = "jy_animation_in"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_animation_in(self, animation, start, duration):
         return (tools.generate_animation_data(
@@ -298,14 +298,15 @@ class JyAnimationGroup:
             }
         }
 
-    RETURN_TYPES = ("ANIMATION_GROUP",)
+    RETURN_TYPES = ("动画组",)
     RETURN_NAMES = ("入场动画",)
     OUTPUT_NODE = False
     FUNCTION = "jy_animation_group"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_animation_group(self, animation, start, duration):
+        animation_type="组",  # 动画类型
         return (tools.generate_animation_data(
             name_or_resource_id=animation,  # 动画名称（可以是内置的动画名称，也可以是剪映本身的动画资源id）
             start=int(start*1000000),  # 动画开始时间
@@ -335,7 +336,7 @@ class JyAnimationOut:
     OUTPUT_NODE = False
     FUNCTION = "jy_animation_out"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_animation_out(self, animation, start, duration):
         return (tools.generate_animation_data(
@@ -364,7 +365,7 @@ class JyMultiMediaGroup:
     RETURN_TYPES = ("MEIDA_GROUP",)
     FUNCTION = "media_group"
     OUTPUT_NODE = False
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def media_group(self, **kwargs):
        
@@ -396,7 +397,7 @@ class JyMultiAudioGroup:
     RETURN_TYPES = ("AUDIO_GROUP",)
     FUNCTION = "audio_group"
     OUTPUT_NODE = False
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def audio_group(self, **kwargs):
        
@@ -425,7 +426,7 @@ class JyMultiCaptionsGroup:
     RETURN_TYPES = ("CAPTIONS_GROUP",)
     FUNCTION = "captions_group"
     OUTPUT_NODE = False
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def captions_group(self, **kwargs):
        
@@ -454,7 +455,7 @@ class JyMultiEffectGroup:
     RETURN_TYPES = ("EFFECT_GROUP",)
     FUNCTION = "effect_group"
     OUTPUT_NODE = False
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def effect_group(self, **kwargs):
        
@@ -490,7 +491,7 @@ class JyAudio2CaptionsGroup:
     OUTPUT_NODE = False
     FUNCTION = "jy_audio2captions_group"
 
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def jy_audio2captions_group(self,model, file_path,start_at_track,color,size,transform_x,transform_y,captions_group=[]):
         import whisper
@@ -535,7 +536,7 @@ class JySaveDraft:
     FUNCTION = "save_draft"
     
     OUTPUT_NODE = True
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def save_draft(self,medias,draft_name,width,height,audios=None,effects=None,captions=None):
         draft = Draft(draft_name,width,height)
@@ -627,7 +628,7 @@ class JySaveOutDraft:
     FUNCTION = "save_draft"
     
     OUTPUT_NODE = True
-    CATEGORY = "lam"
+    CATEGORY = "剪映节点"
 
     def save_draft(self,medias,draft_name,width,height,audios=None,effects=None,captions=None):
         draft = Draft(draft_name,width,height,draft_root=self.output_dir)
@@ -713,20 +714,20 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "JyMediaAnimation": "剪映带动画图片/视频",
-    "JyMediaNative": "剪映图片/视频",
-    "JyAudioNative": "剪映音频",
-    "JyCaptionsNative": "剪映字幕",
-    "JyEffectNative": "剪映特效",
-    "JyTransition": "剪映转场",
+    "JyMediaAnimation": "带动画媒体",
+    "JyMediaNative": "基础媒体",
+    "JyAudioNative": "音频文件",
+    "JyCaptionsNative": "字幕文本",
+    "JyEffectNative": "视频特效",
+    "JyTransition": "转场效果",
     "JyAnimationIn": "入场动画",
-    "JyAnimationGroup": "组动画",
+    "JyAnimationGroup": "组合动画",
     "JyAnimationOut": "出场动画",
-    "JyMultiMediaGroup": "图片/视频组",
+    "JyMultiMediaGroup": "媒体组",
     "JyMultiAudioGroup": "音频组",
     "JyMultiCaptionsGroup": "字幕组",
     "JyMultiEffectGroup": "特效组",
-    "JyAudio2CaptionsGroup": "音频转字幕组",
+    "JyAudio2CaptionsGroup": "音频转字幕",
     "JySaveDraft": "保存草稿",
-    "JySaveOutDraft": "临时保存下载",
+    "JySaveOutDraft": "打包下载",
 }

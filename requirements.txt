@@ -1,31 +1,29 @@
 # ComfyUI-JYNodes 剪映专版依赖库
+# 精简版依赖，仅包含必需的核心库
 
-# 媒体信息处理
+# 媒体信息处理 - 用于获取音视频文件元数据
 pymediainfo>=6.0.1
 
-# 异步HTTP请求
-aiohttp>=3.8.0
-
-# 进度条显示
-tqdm>=4.64.0
-
-# 数据处理
-numpy>=1.21.0
-
-# 图像处理
-Pillow>=9.0.0
-opencv-python>=4.5.0
-
-# 网络请求
+# 网络请求 - 用于可能的在线资源获取
 requests>=2.25.0
 
-# 类型提示
-typing-extensions>=4.0.0
+# 数据处理 - 基础数据操作
+numpy>=1.21.0
 
-# PyTorch相关（ComfyUI通常已安装）
-torch>=1.12.0
+# 图像处理 - 媒体文件处理
+Pillow>=9.0.0
 
-# 注意：以下库在代码中引用但可能不需要安装
-# BasicLibrary - 看起来是内部库，可能需要检查
-# folder_paths - ComfyUI内置模块
-# server - ComfyUI内置模块
+# 进度显示 - 文件操作进度条
+tqdm>=4.64.0
+
+# === ComfyUI 环境已包含的依赖 ===
+# 以下依赖通常已由ComfyUI环境提供，无需单独安装：
+# torch>=1.12.0
+# opencv-python>=4.5.0
+# aiohttp>=3.8.0
+# typing-extensions>=4.0.0
+
+# === 说明 ===
+# 本插件设计为零依赖安装，大部分功能使用Python标准库
+# ComfyUI环境已包含PyTorch、OpenCV等深度学习依赖
+# 如需额外功能，可手动安装相应库

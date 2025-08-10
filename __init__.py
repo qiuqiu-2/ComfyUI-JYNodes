@@ -2,7 +2,7 @@ import importlib.util
 import glob
 import os
 import sys
-from .lam import init, get_ext_dir
+from .JYNodes import init, get_ext_dir
 import time
 from server import PromptServer
 

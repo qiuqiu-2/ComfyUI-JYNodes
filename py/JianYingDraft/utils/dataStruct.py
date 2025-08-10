@@ -9,7 +9,7 @@
 from dataclasses import dataclass
 from typing import Literal
 
-AnimationTypes = Literal["in", "out", "group"]
+AnimationTypes = Literal["入场", "出场", "组"]
 
 
 @dataclass
