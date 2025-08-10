@@ -1,8 +1,12 @@
-from .JianYingDraft.utils.dataStruct import TransitionData, AnimationData
-from .JianYingDraft.utils.innerBizTypes import *
-from .JianYingDraft.utils import tools
-from .JianYingDraft.core.draft import Draft
-from .JianYingDraft.core.otherSettings import Clip_settings
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from JianYingDraft.utils.dataStruct import TransitionData, AnimationData
+from JianYingDraft.utils.innerBizTypes import *
+from JianYingDraft.utils import tools
+from JianYingDraft.core.draft import Draft
+from JianYingDraft.core.otherSettings import Clip_settings
 
 import os
 import folder_paths
@@ -252,33 +256,154 @@ class JyAnimationOut:
         }
         return (animation_data,)
 
-class media_group:
+class JyMultiMediaGroup:
+    def __init__(self):
+        pass
+
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
+                "媒体0": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
             },
             "optional": {
-                "媒体组": ("MEDIA_GROUP",),
-                "音频组": ("AUDIO_GROUP",),
-                "字幕组": ("CAPTIONS_GROUP",),
-                "特效组": ("EFFECT_GROUP",),
+                "媒体1": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体2": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体3": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体4": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体5": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体6": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体7": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体8": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体9": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
             }
         }
 
-    RETURN_TYPES = ("MEDIA_GROUP","AUDIO_GROUP","CAPTIONS_GROUP","EFFECT_GROUP")
-    RETURN_NAMES = ("媒体组","音频组","字幕组","特效组")
+    RETURN_TYPES = ("MEIDA_GROUP",)
+    RETURN_NAMES = ("媒体组",)
     FUNCTION = "media_group"
+    OUTPUT_NODE = False
     CATEGORY = "剪映节点"
 
     def media_group(self, **kwargs):
-        媒体组 = kwargs.get("媒体组", [])
-        音频组 = kwargs.get("音频组", [])
-        字幕组 = kwargs.get("字幕组", [])
-        特效组 = kwargs.get("特效组", [])
-        return (媒体组, 音频组, 字幕组, 特效组)
+        mediaList=[]
+        for arg in kwargs:
+            if arg.startswith('媒体'):
+                if type(kwargs[arg]) == list:
+                    mediaList.extend(kwargs[arg])
+                else:
+                    mediaList.append(kwargs[arg])
+        return (mediaList, )
 
-class JyAudio2captionsGroup:
+class JyMultiAudioGroup:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "音频0": ("JY_AUDIO", ),
+            },
+            "optional": {
+                "音频1": ("JY_AUDIO", ),
+                "音频2": ("JY_AUDIO", ),
+                "音频3": ("JY_AUDIO", ),
+                "音频4": ("JY_AUDIO", ),
+                "音频5": ("JY_AUDIO", ),
+                "音频6": ("JY_AUDIO", ),
+                "音频7": ("JY_AUDIO", ),
+                "音频8": ("JY_AUDIO", ),
+                "音频9": ("JY_AUDIO", ),
+            }
+        }
+
+    RETURN_TYPES = ("AUDIO_GROUP",)
+    RETURN_NAMES = ("音频组",)
+    FUNCTION = "audio_group"
+    OUTPUT_NODE = False
+    CATEGORY = "剪映节点"
+
+    def audio_group(self, **kwargs):
+        mediaList=[]
+        for arg in kwargs:
+            if arg.startswith('音频'):
+                mediaList.append(kwargs[arg])
+        return (mediaList, )
+
+class JyMultiCaptionsGroup:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "字幕0": ("JY_CAPTIONS", ),
+            },
+            "optional": {
+                "字幕1": ("JY_CAPTIONS", ),
+                "字幕2": ("JY_CAPTIONS", ),
+                "字幕3": ("JY_CAPTIONS", ),
+                "字幕4": ("JY_CAPTIONS", ),
+                "字幕5": ("JY_CAPTIONS", ),
+                "字幕6": ("JY_CAPTIONS", ),
+                "字幕7": ("JY_CAPTIONS", ),
+                "字幕8": ("JY_CAPTIONS", ),
+                "字幕9": ("JY_CAPTIONS", ),
+            }
+        }
+
+    RETURN_TYPES = ("CAPTIONS_GROUP",)
+    RETURN_NAMES = ("字幕组",)
+    FUNCTION = "captions_group"
+    OUTPUT_NODE = False
+    CATEGORY = "剪映节点"
+
+    def captions_group(self, **kwargs):
+        mediaList=[]
+        for arg in kwargs:
+            if arg.startswith('字幕'):
+                mediaList.append(kwargs[arg])
+        return (mediaList, )
+
+class JyMultiEffectGroup:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "特效0": ("JY_EFFECT", ),
+            },
+            "optional": {
+                "特效1": ("JY_EFFECT", ),
+                "特效2": ("JY_EFFECT", ),
+                "特效3": ("JY_EFFECT", ),
+                "特效4": ("JY_EFFECT", ),
+                "特效5": ("JY_EFFECT", ),
+                "特效6": ("JY_EFFECT", ),
+                "特效7": ("JY_EFFECT", ),
+                "特效8": ("JY_EFFECT", ),
+                "特效9": ("JY_EFFECT", ),
+            }
+        }
+
+    RETURN_TYPES = ("EFFECT_GROUP",)
+    RETURN_NAMES = ("特效组",)
+    FUNCTION = "effect_group"
+    OUTPUT_NODE = False
+    CATEGORY = "剪映节点"
+
+    def effect_group(self, **kwargs):
+        mediaList=[]
+        for arg in kwargs:
+            if arg.startswith('特效'):
+                mediaList.append(kwargs[arg])
+        return (mediaList, )
+
+class JyAudio2CaptionsGroup:
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -324,335 +449,93 @@ class JySaveDraft:
         return {
             "required": {
                 "文件名前缀": ("STRING",{"default": "剪映草稿"}),
+                "媒体组": ("MEDIA_GROUP",),
             },
             "optional": {
-                "媒体组": ("MEDIA_GROUP",),
                 "音频组": ("AUDIO_GROUP",),
                 "字幕组": ("CAPTIONS_GROUP",),
                 "特效组": ("EFFECT_GROUP",),
+                "草稿名称": ("STRING",{"default": "我的剪映草稿"}),
+                "画布宽度": ("INT", {"default": 1920, "min": 1, "max": 8192}),
+                "画布高度": ("INT", {"default": 1080, "min": 1, "max": 8192}),
+                "画布比例": (["16:9", "9:16", "1:1", "4:3", "3:4"], {"default": "16:9"}),
+                "草稿时长": ("FLOAT", {"default": 60.0, "min": 0.1, "max": 9999999, "step": 0.1}),
             }
         }
 
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("草稿路径",)
-    FUNCTION = "save_draft"
-    CATEGORY = "剪映节点"
+    FUNCTION = "jy_save_draft"
     OUTPUT_NODE = True
+    CATEGORY = "剪映节点"
 
-    def save_draft(self, 文件名前缀, 媒体组=[], 音频组=[], 字幕组=[], 特效组=[]):
+    def jy_save_draft(self, 文件名前缀, 媒体组, 音频组=[], 字幕组=[], 特效组=[], 草稿名称="我的剪映草稿", 画布宽度=1920, 画布高度=1080, 画布比例="16:9", 草稿时长=60.0):
         draft = Draft()
+        draft.draft_name = 草稿名称
+        draft.canvas_width = 画布宽度
+        draft.canvas_height = 画布高度
+        draft.canvas_ratio = 画布比例
+        draft.duration = int(草稿时长*1000000)
         
         for media in 媒体组:
-            draft.add_media(**media)
+            draft.add_media(media)
+        
         for audio in 音频组:
-            draft.add_media(**audio)
+            draft.add_audio(audio)
+        
         for caption in 字幕组:
-            draft.add_subtitle(**caption)
+            draft.add_caption(caption)
+        
         for effect in 特效组:
-            draft.add_effect(**effect)
+            draft.add_effect(effect)
         
-        foldername = os.path.join(folder_paths.get_output_directory(), "剪映草稿")
-        if not os.path.exists(foldername):
-            os.makedirs(foldername)
-        
-        filename = f"{文件名前缀}_{int(time.time())}.draft"
-        file_path = os.path.join(foldername, filename)
-        
-        draft.save(file_path)
-        return (file_path,)
+        output_dir = folder_paths.get_output_directory()
+        draft_path = draft.save_draft(output_dir, 文件名前缀)
+        return (draft_path,)
 
 class JySaveOutDraft:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "文件名前缀": ("STRING",{"default": "剪映草稿"}),
-                "输出文件夹": ("STRING",{"default": "","tooltip": "输出文件夹路径，留空使用默认输出目录"}),
-            },
-            "optional": {
-                "媒体组": ("MEDIA_GROUP",),
-                "音频组": ("AUDIO_GROUP",),
-                "字幕组": ("CAPTIONS_GROUP",),
-                "特效组": ("EFFECT_GROUP",),
+                "草稿路径": ("STRING",{"default": "","tooltip": "JySaveDraft节点生成的草稿文件路径"}),
             }
         }
 
     RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("草稿路径",)
-    FUNCTION = "save_out_draft"
-    CATEGORY = "剪映节点"
-    OUTPUT_NODE = True
-
-    def save_out_draft(self, 文件名前缀, 输出文件夹, 媒体组=[], 音频组=[], 字幕组=[], 特效组=[]):
-        draft = Draft()
-        
-        for media in 媒体组:
-            draft.add_media(**media)
-        for audio in 音频组:
-            draft.add_media(**audio)
-        for caption in 字幕组:
-            draft.add_subtitle(**caption)
-        for effect in 特效组:
-            draft.add_effect(**effect)
-        
-        if 输出文件夹:
-            foldername = 输出文件夹
-        else:
-            foldername = folder_paths.get_output_directory()
-        
-        if not os.path.exists(foldername):
-            os.makedirs(foldername)
-        
-        filename = f"{文件名前缀}_{int(time.time())}.draft"
-        file_path = os.path.join(foldername, filename)
-        
-        draft.save(file_path)
-        return (file_path,)
-
-importStr=r"""import json
-import os
-import shutil
-
-def replace_text(contentText, data):
-    for i in data:
-        primary=i["primary"]
-        newfile=i["newfile"]
-        #获取newfile的绝对路径
-        newfile=os.path.abspath(newfile)
-        #替换
-        contentText.replace(primary,newfile)
-    return contentText
-
-inputPath=input("请输入剪映草稿目录:")
-if not inputPath:
-    inputPath=r"C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft/"
-#当前目录文件夹名称
-folderName=os.path.basename(os.getcwd())
-print(f"正在处理“{folderName}”目录下的剪映草稿...")
-
-data=json.load(open("file_counter.json"))
-contentText=""
-with open("draft_content.json","r") as f:
-    contentText=f.read()
-
-with open("draft_content.json","w") as f:
-    f.write(replace_text(contentText,data))
-
-with open("draft_meta_info.json","r") as f:
-    contentText=f.read()
-
-with open("draft_meta_info.json","w") as f:
-    f.write(replace_text(contentText,data))
-
-newDraftsPath=os.path.join(inputPath,folderName)
-os.makedirs(newDraftsPath,exist_ok=True)
-
-shutil.copyfile("draft_content.json",os.path.join(newDraftsPath,"draft_content.json"))
-shutil.copyfile("draft_meta_info.json",os.path.join(newDraftsPath,"draft_meta_info.json"))"""
-
-importBat='''python importDraft.py
-pause
-'''
-class JySaveOutDraft:
-    def __init__(self):
-        self.output_dir = folder_paths.get_temp_directory()
-        self.type = "temp"
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "medias": ("MEIDA_GROUP", ),
-                "draft_name": ("STRING", {"default": "Draft", "tooltip": "保存的草稿名称"}),
-                "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿宽"}),
-                "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿高"}),
-            },
-            "optional": {
-                "audios": ("AUDIO_GROUP", ),
-                "effects": ("EFFECT_GROUP", ),
-                "captions": ("CAPTIONS_GROUP", ),
-            }
-        }
-
-    RETURN_TYPES = ("FLOAT",)
-    RETURN_NAMES = ("草稿时长",)
-    FUNCTION = "save_draft"
-    
+    RETURN_NAMES = ("下载链接",)
+    FUNCTION = "jy_save_out_draft"
     OUTPUT_NODE = True
     CATEGORY = "剪映节点"
 
-    def save_draft(self,medias,draft_name,width,height,audios=None,effects=None,captions=None):
-        draft = Draft(draft_name,width,height)
-        mediaList = [m for m in medias]
-        if audios:
-            mediaList.extend([a for a in audios])
-        for m in mediaList:
-            draft.add_media(**m)
+    def jy_save_out_draft(self, 草稿路径):
+        if not os.path.exists(草稿路径):
+            raise ValueError(f"草稿文件不存在: {草稿路径}")
         
-        if effects:
-            for e in effects:
-                draft.add_effect(**e)
+        output_dir = folder_paths.get_output_directory()
+        filename = os.path.basename(草稿路径).replace('.draft', '')
+        zip_path = os.path.join(output_dir, f"{filename}.zip")
         
-        if captions:
-            for c in captions:
-                draft.add_subtitle(**c)
-
-        draft.save()
-        
-        timeSize=draft.calc_draft_duration()
-        return (timeSize/1000000,)
-
-importStr=r"""import json
-import os
-import shutil
-
-def replace_text(contentText, data):
-    for i in data:
-        primary=i["primary"]
-        newfile=i["newfile"]
-        #获取newfile的绝对路径
-        newfile=os.path.abspath(newfile)
-        #替换
-        contentText.replace(primary,newfile)
-    return contentText
-
-inputPath=input("请输入剪映草稿目录:")
-if not inputPath:
-    inputPath=r"C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft/"
-#当前目录文件夹名称
-folderName=os.path.basename(os.getcwd())
-print(f"正在处理“{folderName}”目录下的剪映草稿...")
-
-data=json.load(open("file_counter.json"))
-contentText=""
-with open("draft_content.json","r") as f:
-    contentText=f.read()
-
-with open("draft_content.json","w") as f:
-    f.write(replace_text(contentText,data))
-
-with open("draft_meta_info.json","r") as f:
-    contentText=f.read()
-
-with open("draft_meta_info.json","w") as f:
-    f.write(replace_text(contentText,data))
-
-newDraftsPath=os.path.join(inputPath,folderName)
-os.makedirs(newDraftsPath,exist_ok=True)
-
-shutil.copyfile("draft_content.json",os.path.join(newDraftsPath,"draft_content.json"))
-shutil.copyfile("draft_meta_info.json",os.path.join(newDraftsPath,"draft_meta_info.json"))"""
-
-importBat='''python importDraft.py
-pause
-'''
-class JySaveOutDraft:
-    def __init__(self):
-        self.output_dir = folder_paths.get_temp_directory()
-        self.type = "temp"
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "medias": ("MEIDA_GROUP", ),
-                "draft_name": ("STRING", {"default": "Draft", "tooltip": "保存的草稿名称"}),
-                "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿宽"}),
-                "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿高"}),
-            },
-            "optional": {
-                "audios": ("AUDIO_GROUP", ),
-                "effects": ("EFFECT_GROUP", ),
-                "captions": ("CAPTIONS_GROUP", ),
-            }
-        }
-
-    RETURN_TYPES = ("FLOAT",)
-    RETURN_NAMES = ("草稿时长",)
-    FUNCTION = "save_draft"
-    
-    OUTPUT_NODE = True
-    CATEGORY = "剪映节点"
-
-    def save_draft(self,medias,draft_name,width,height,audios=None,effects=None,captions=None):
-        draft = Draft(draft_name,width,height,draft_root=self.output_dir)
-        mediaList = [m for m in medias]
-        if audios:
-            mediaList.extend([a for a in audios])
-
-        fileList=[]
-        fileCounter=[]
-        for m in mediaList:
-            draft.add_media(**m)
-            fileList.append(m['media_file_full_name'])
-        
-        if effects:
-            for e in effects:
-                draft.add_effect(**e)
-        
-        if captions:
-            for c in captions:
-                draft.add_subtitle(**c)
-        draft.save()
-        folder_to_zip=os.path.join(self.output_dir, draft_name)
-        filePath=os.path.join(folder_to_zip, "files")
-        if not os.path.exists(filePath):
-            os.makedirs(filePath)
-        
-        for file in fileList:
-            #复制文件到当前目录
-            newFile=os.path.join(filePath, os.path.basename(file))
-            if os.path.exists(newFile):
-                newFile=os.path.join(filePath, os.path.splitext(os.path.basename(file))[0]+"_"+str(uuid.uuid4())+os.path.splitext(file)[1])
-            shutil.copy(file, newFile)
-
-            fileCounter.append({"primary":file, "newfile":"files/"+os.path.basename(newFile)})
-        
-        with open(os.path.join(folder_to_zip, "file_counter.json"), "w", encoding="utf-8") as f:
-            f.write(json.dumps(fileCounter))
-
-        with open(os.path.join(folder_to_zip, "importDraft.py"), "w", encoding="utf-8") as f:
-            f.write(importStr)
-
-        with open(os.path.join(folder_to_zip, "导入草稿.bat"), "w", encoding="utf-8") as f:
-            f.write(importBat)
-
-        zip_filename=os.path.join(self.output_dir, draft_name+".zip")
-        # 创建一个ZipFile对象
-        with zipfile.ZipFile(zip_filename, 'w') as zipf:
-            # os.walk遍历文件夹中的所有文件和子文件夹
-            for foldername, subfolders, filenames in os.walk(folder_to_zip):
-                for filename in filenames:
-                    # 构建完整的文件路径并添加到压缩包中，注意路径的处理以正确反映目录结构
-                    file_path = os.path.join(foldername, filename)
-                    arcname = os.path.relpath(file_path, folder_to_zip)  # 使用相对路径以保持目录结构
-                    zipf.write(file_path, arcname=arcname)
-        #删除临时文件夹
-        shutil.rmtree(folder_to_zip)
-        timeSize=draft.calc_draft_duration()
-        results=[]
-        results.append({
-            "filename": draft_name+".zip",
-            "subfolder": '',
-            "type": self.type
-        })
-        return {"ui": {"down": results}, "result": (timeSize/1000000,)} 
+        shutil.make_archive(os.path.join(output_dir, filename), 'zip', os.path.dirname(草稿_path))
+        return (zip_path,)
 
 NODE_CLASS_MAPPINGS = {
     "JyMediaAnimation": JyMediaAnimation,
-    "JyMediaNative":JyMediaNative,
-    "JyAudioNative":JyAudioNative,
-    "JyCaptionsNative":JyCaptionsNative,
-    "JyEffectNative":JyEffectNative,
-    "JyTransition":JyTransition,
-    "JyAnimationIn":JyAnimationIn,
-    "JyAnimationGroup":JyAnimationGroup,
-    "JyAnimationOut":JyAnimationOut,
-    "JyMultiMediaGroup":JyMultiMediaGroup,
-    "JyMultiAudioGroup":JyMultiAudioGroup,
-    "JyMultiCaptionsGroup":JyMultiCaptionsGroup,
-    "JyMultiEffectGroup":JyMultiEffectGroup,
-    "JyAudio2CaptionsGroup":JyAudio2CaptionsGroup,
-    "JySaveDraft":JySaveDraft,
-    "JySaveOutDraft":JySaveOutDraft,
+    "JyMediaNative": JyMediaNative,
+    "JyAudioNative": JyAudioNative,
+    "JyCaptionsNative": JyCaptionsNative,
+    "JyEffectNative": JyEffectNative,
+    "JyTransition": JyTransition,
+    "JyAnimationIn": JyAnimationIn,
+    "JyAnimationGroup": JyAnimationGroup,
+    "JyAnimationOut": JyAnimationOut,
+    "JyMultiMediaGroup": JyMultiMediaGroup,
+    "JyMultiAudioGroup": JyMultiAudioGroup,
+    "JyMultiCaptionsGroup": JyMultiCaptionsGroup,
+    "JyMultiEffectGroup": JyMultiEffectGroup,
+    "JyAudio2CaptionsGroup": JyAudio2CaptionsGroup,
+    "JySaveDraft": JySaveDraft,
+    "JySaveOutDraft": JySaveOutDraft,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
