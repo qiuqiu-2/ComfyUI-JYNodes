@@ -28,14 +28,14 @@ class JyMediaAnimation:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "meida_group":("媒体组",),
-                "animation_in":("ANIMATION_IN",),
-                "animation_group":("动画组",),
-                "animation_out":("ANIMATION_OUT",),
+                "媒体组":("媒体组",),
+                "入场动画":("入场动画",),
+                "动画组":("动画组",),
+                "出场动画":("出场动画",),
             }
         }
 
-    RETURN_TYPES = ("带动画媒体","媒体组",)
+    RETURN_TYPES = ("媒体","媒体组",)
     RETURN_NAMES = ("带动画的媒体","媒体组",)
 
     OUTPUT_NODE = False     #是否为输出节点
@@ -76,7 +76,7 @@ class JyMediaNative:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "meida_group":("媒体组",)
+                "媒体组":("媒体组",)
             }
         }
 
@@ -112,11 +112,11 @@ class JyAudioNative:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "audio_group":("音频组",)
+                "音频组":("音频组",)
             }
         }
 
-    RETURN_TYPES = ("JY_AUDIO","音频组",)
+    RETURN_TYPES = ("音频","音频组",)
     RETURN_NAMES = ("音频","音频组",)
 
     OUTPUT_NODE = False
@@ -152,11 +152,11 @@ class JyCaptionsNative:
                 "duration": ("FLOAT", {"default": 0.1, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "captions_group":("字幕组",)
+                "字幕组":("字幕组",)
             }
         }
 
-    RETURN_TYPES = ("JY_CAPTIONS","字幕组",)
+    RETURN_TYPES = ("字幕","字幕组",)
     RETURN_NAMES = ("字幕","字幕组",)
 
     OUTPUT_NODE = False
@@ -187,11 +187,11 @@ class JyEffectNative:
                 "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
             },
             "optional": {
-                "effect_group":("特效组",)
+                "特效组":("特效组",)
             }
         }
 
-    RETURN_TYPES = ("JY_EFFECT","特效组",)
+    RETURN_TYPES = ("特效","特效组",)
     RETURN_NAMES = ("特效","特效组",)
     OUTPUT_NODE = False
     FUNCTION = "jy_effect"
@@ -222,8 +222,8 @@ class JyTransition:
                 "meida_out":("MEIDA",),
             },
             "optional": {
-                "meida_in":("MEIDA",),
-                "meida_group":("媒体组",)
+                "媒体输入":("媒体",),
+                "媒体组":("媒体组",)
             }
         }
 
@@ -266,7 +266,7 @@ class JyAnimationIn:
             }
         }
 
-    RETURN_TYPES = ("ANIMATION_IN",)
+    RETURN_TYPES = ("入场动画",)
     RETURN_NAMES = ("入场动画",)
     OUTPUT_NODE = False
     FUNCTION = "jy_animation_in"
@@ -331,7 +331,7 @@ class JyAnimationOut:
             }
         }
 
-    RETURN_TYPES = ("ANIMATION_OUT",)
+    RETURN_TYPES = ("出场动画",)
     RETURN_NAMES = ("出场动画",)
     OUTPUT_NODE = False
     FUNCTION = "jy_animation_out"
@@ -358,10 +358,10 @@ class JyMultiMediaGroup:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "meida0": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体1": ("媒体,ANIMATION_MEIDA,转场", ),
             },
             "optional": {
-                "meida1": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体2": ("媒体,ANIMATION_MEIDA,转场", ),
             }
         }
 
@@ -393,10 +393,10 @@ class JyMultiAudioGroup:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "audio0": ("JY_AUDIO", ),
+                "音频1": ("音频", ),
             },
             "optional": {
-                "audio1": ("JY_AUDIO", ),
+                "音频2": ("音频", ),
             }
         }
 
@@ -425,10 +425,10 @@ class JyMultiCaptionsGroup:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "captions0": ("JY_CAPTIONS", ),
+                "字幕1": ("字幕", ),
             },
             "optional": {
-                "captions1": ("JY_CAPTIONS", ),
+                "字幕2": ("字幕", ),
             }
         }
 
@@ -457,10 +457,10 @@ class JyMultiEffectGroup:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "effect0": ("JY_EFFECT", ),
+                "特效1": ("特效", ),
             },
             "optional": {
-                "effect1": ("JY_EFFECT", ),
+                "特效2": ("特效", ),
             }
         }
 
@@ -497,7 +497,7 @@ class JyAudio2CaptionsGroup:
                 "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "垂直位移, 单位为半个画布高"}),
             },
             "optional": {
-                "captions_group":("字幕组",)
+                "字幕组":("字幕组",)
             }
         }
 
@@ -537,15 +537,15 @@ class JySaveDraft:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "medias": ("MEIDA_GROUP", ),
+                "媒体组": ("媒体组", ),
                 "draft_name": ("STRING", {"default": "Draft", "tooltip": "保存的草稿名称"}),
                 "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿宽"}),
                 "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿高"}),
             },
             "optional": {
-                "audios": ("AUDIO_GROUP", ),
-                "effects": ("EFFECT_GROUP", ),
-                "captions": ("CAPTIONS_GROUP", ),
+                "音频组": ("音频组", ),
+                "特效组": ("特效组", ),
+                "字幕组": ("字幕组", ),
             }
         }
 
@@ -632,15 +632,15 @@ class JySaveOutDraft:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "medias": ("MEIDA_GROUP", ),
+                "媒体组": ("媒体组", ),
                 "draft_name": ("STRING", {"default": "Draft", "tooltip": "保存的草稿名称"}),
                 "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿宽"}),
                 "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿高"}),
             },
             "optional": {
-                "audios": ("AUDIO_GROUP", ),
-                "effects": ("EFFECT_GROUP", ),
-                "captions": ("CAPTIONS_GROUP", ),
+                "音频组": ("音频组", ),
+                "特效组": ("特效组", ),
+                "字幕组": ("字幕组", ),
             }
         }
 
