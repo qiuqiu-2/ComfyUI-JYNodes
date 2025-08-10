@@ -12,509 +12,451 @@ import uuid
 import json
 
 class JyMediaAnimation:
-    """
-    带动画图片/视频
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "file_path": ("STRING",{"default": "","tooltip": "图片/视频地址"}),
-                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "视频开始时间（秒）"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "草稿添加时间（秒）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "文件路径": ("STRING",{"default": "","tooltip": "图片/视频地址"}),
+                "素材开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "从素材的哪个时间点开始截取（秒）"}),
+                "轨道开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "在轨道上的开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒），0表示使用素材原始时长"}),
             },
             "optional": {
-                "meida_group":("媒体组",),
-                "animation_in":("ANIMATION_IN",),
-                "animation_group":("动画组",),
-                "animation_out":("ANIMATION_OUT",),
+                "媒体组": ("MEDIA_GROUP",),
+                "入场动画": ("ANIMATION_IN",),
+                "组合动画": ("ANIMATION_GROUP",),
+                "出场动画": ("ANIMATION_OUT",),
             }
         }
 
-    RETURN_TYPES = ("带动画媒体","媒体组",)
-    RETURN_NAMES = ("带动画图片/视频","图片/视频组",)
-
-    OUTPUT_NODE = False     #是否为输出节点
-
-    FUNCTION = "animation_video"
-
-    CATEGORY = "剪映节点"
-
-    def animation_video(self, file_path, start_in_media, start_at_track, duration,meida_group=[], animation_in:AnimationData=None, animation_group:AnimationData=None, animation_out:AnimationData=None):
-        if not os.path.exists(file_path):
-            raise Exception('对应文件不存在')
-        meida_group=[*meida_group]
-        animation_datas: list[AnimationData] = []
-        if animation_in:
-            animation_datas.append(animation_in)
-        if animation_group:
-            animation_datas.append(animation_group)
-        if animation_out:
-            animation_datas.append(animation_out)
-        meida={"media_file_full_name": file_path, "start_in_media": int(start_in_media*1000000), "start_at_track": int(start_at_track*1000000), "duration": int(duration*1000000), "animation_datas": animation_datas}
-        meida_group.append(meida)
-        return (meida,meida_group,)
+    def animation_video(self, 文件路径, 素材开始时间, 轨道开始时间, 持续时间, 媒体组=[], 入场动画=None, 组合动画=None, 出场动画=None):
+        if not os.path.exists(文件路径):
+            raise ValueError(f"文件不存在: {文件路径}")
+        
+        animation_datas = []
+        if 入场动画:
+            animation_datas.append(入场动画)
+        if 组合动画:
+            animation_datas.append(组合动画)
+        if 出场动画:
+            animation_datas.append(出场动画)
+        
+        meida={"media_file_full_name": 文件路径, "start_in_media": int(素材开始时间*1000000), "start_at_track": int(轨道开始时间*1000000), "duration": int(持续时间*1000000), "animation_datas": animation_datas}
+        
+        if 媒体组:
+            媒体组.append(meida)
+            return (媒体组,)
+        else:
+            return ([meida],)
 
 class JyMediaNative:
-    """
-    不带动画图片/视频
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "file_path": ("STRING",{"default": "","tooltip": "图片/视频地址"}),
-                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "视频开始时间（秒）"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "草稿添加时间（秒）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "文件路径": ("STRING",{"default": "","tooltip": "图片/视频地址"}),
+                "素材开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "从素材的哪个时间点开始截取（秒）"}),
+                "轨道开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "在轨道上的开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒），0表示使用素材原始时长"}),
             },
             "optional": {
-                "meida_group":("媒体组",)
+                "媒体组": ("MEDIA_GROUP",),
             }
         }
 
-    RETURN_TYPES = ("媒体","媒体组",)
-    RETURN_NAMES = ("图片/视频","图片/视频组",)
-    OUTPUT_NODE = False
-    FUNCTION = "jy_media"
-
-    CATEGORY = "剪映节点"
-
-    def jy_media(self, file_path, start_in_media, start_at_track, duration,meida_group=[]):
-        if not os.path.exists(file_path):
-            raise Exception('对应文件不存在')
-        meida_group=[*meida_group]
-        meida={"media_file_full_name": file_path, "start_in_media": int(start_in_media*1000000), "start_at_track": int(start_at_track*1000000), "duration": int(duration*1000000)}
-        meida_group.append(meida)
-        return (meida,meida_group,)
+    def jy_media(self, 文件路径, 素材开始时间, 轨道开始时间, 持续时间, 媒体组=[]):
+        if not os.path.exists(文件路径):
+            raise ValueError(f"文件不存在: {文件路径}")
+        
+        meida={"media_file_full_name": 文件路径, "start_in_media": int(素材开始时间*1000000), "start_at_track": int(轨道开始时间*1000000), "duration": int(持续时间*1000000)}
+        
+        if 媒体组:
+            媒体组.append(meida)
+            return (媒体组,)
+        else:
+            return ([meida],)
 
 class JyAudioNative:
-    """
-    音频
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "file_path": ("STRING",{"default": "","tooltip": "音频地址"}),
-                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "音频开始时间（秒）"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "草稿添加时间（秒）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "文件路径": ("STRING",{"default": "","tooltip": "音频地址"}),
+                "素材开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "从素材的哪个时间点开始截取（秒）"}),
+                "轨道开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "在轨道上的开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒），0表示使用音频原始时长"}),
             },
             "optional": {
-                "audio_group":("音频组",)
+                "音频组": ("AUDIO_GROUP",),
             }
         }
 
-    RETURN_TYPES = ("JY_AUDIO","音频组",)
-    RETURN_NAMES = ("音频","音频组",)
-
-    OUTPUT_NODE = False
-    FUNCTION = "jy_audio"
-
-    CATEGORY = "剪映节点"
-
-    def jy_audio(self, file_path, start_in_media, start_at_track, duration,audio_group=[]):
-        if not os.path.exists(file_path):
-            raise Exception('对应文件不存在')
-        audio_group=[*audio_group]
-        audio={"media_file_full_name": file_path, "start_in_media": int(start_in_media*1000000), "start_at_track": int(start_at_track*1000000), "duration": int(duration*1000000)}
-        audio_group.append(audio)
-        return (audio,audio_group,)
+    def jy_audio(self, 文件路径, 素材开始时间, 轨道开始时间, 持续时间, 音频组=[]):
+        if not os.path.exists(文件路径):
+            raise ValueError(f"文件不存在: {文件路径}")
+        
+        audio={"media_file_full_name": 文件路径, "start_in_media": int(素材开始时间*1000000), "start_at_track": int(轨道开始时间*1000000), "duration": int(持续时间*1000000)}
+        
+        if 音频组:
+            音频组.append(audio)
+            return (音频组,)
+        else:
+            return ([audio],)
 
 class JyCaptionsNative:
-    """
-    字幕
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "text": ("STRING",{"default": "","multiline": True,"tooltip": "字幕内容"}),
-                "color": ("STRING",{"default": "#FFFFFF","tooltip": "字幕颜色"}),
-                "size": ("FLOAT", {"default": 8.0, "min": 0.0, "max":300, "step": 1.0,"tooltip": "字幕大小"}),
-                "transform_x": ("FLOAT", {"default": 0.0, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "水平位移, 单位为半个画布宽"}),
-                "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "垂直位移, 单位为半个画布高"}),
-                "start_at_track": ("FLOAT", {"default": 1.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "草稿添加时间（秒）"}),
-                "duration": ("FLOAT", {"default": 0.1, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "文字内容": ("STRING",{"default": "","multiline": True,"tooltip": "字幕显示的文字内容"}),
+                "颜色": ("STRING",{"default": "#FFFFFF","tooltip": "字幕颜色，支持十六进制颜色值"}),
+                "字体大小": ("FLOAT", {"default": 60.0, "min": 1.0, "max": 200.0, "step": 1.0,"tooltip": "字幕字体大小"}),
+                "X轴位移": ("FLOAT", {"default": 0.0, "min": -2000.0, "max": 2000.0, "step": 1.0,"tooltip": "字幕在X轴方向的位移像素"}),
+                "Y轴位移": ("FLOAT", {"default": 0.0, "min": -2000.0, "max": 2000.0, "step": 1.0,"tooltip": "字幕在Y轴方向的位移像素"}),
+                "轨道开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "字幕在轨道上的开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 3.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "字幕持续时间（秒）"}),
             },
             "optional": {
-                "captions_group":("字幕组",)
+                "字幕组": ("CAPTIONS_GROUP",),
             }
         }
 
-    RETURN_TYPES = ("JY_CAPTIONS","字幕组",)
-    RETURN_NAMES = ("字幕","字幕组",)
-
-    OUTPUT_NODE = False
-    FUNCTION = "jy_captions"
-
-    CATEGORY = "剪映节点"
-
-    def jy_captions(self, text, color,size,transform_x,transform_y, start_at_track, duration,captions_group=[]):
-        captions_group=[*captions_group]
-        captions={"subtitle": text,"color":color,"size":size, "start_at_track": int(start_at_track*1000000), "duration": int(duration*1000000)}
-        captions['clip_settings']=Clip_settings(transform_y=transform_y,transform_x=transform_x)
-        captions_group.append(captions)
-        return (captions,captions_group,)
+    def jy_captions(self, 文字内容, 颜色, 字体大小, X轴位移, Y轴位移, 轨道开始时间, 持续时间, 字幕组=[]):
+        captions={"subtitle": 文字内容,"color":颜色,"size":字体大小,"transform_x":X轴位移,"transform_y":Y轴位移, "start_at_track": int(轨道开始时间*1000000), "duration": int(持续时间*1000000)}
+        
+        if 字幕组:
+            字幕组.append(captions)
+            return (字幕组,)
+        else:
+            return ([captions],)
 
 class JyEffectNative:
-    """
-    特效
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "effect": (list(effectDict.keys()),),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "草稿添加时间（秒）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "特效名称": ("STRING",{"default": "","tooltip": "剪映内置的特效名称或资源ID"}),
+                "轨道开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "特效在轨道上的开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 3.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "特效持续时间（秒）"}),
             },
             "optional": {
-                "effect_group":("特效组",)
+                "特效组": ("EFFECT_GROUP",),
             }
         }
 
-    RETURN_TYPES = ("JY_EFFECT","特效组",)
-    RETURN_NAMES = ("特效","特效组",)
-    OUTPUT_NODE = False
-    FUNCTION = "jy_effect"
-
-    CATEGORY = "剪映节点"
-
-    def jy_effect(self, effect, start_at_track, duration,effect_group=[]):
-        #拷贝一份
-        effect_group=[*effect_group]
-        effect={"effect_name_or_resource_id": effect, "start": int(start_at_track*1000000), "duration": int(duration*1000000)}
-        effect_group.append(effect)
-        return (effect,effect_group,)
-
+    def jy_effect(self, 特效名称, 轨道开始时间, 持续时间, 特效组=[]):
+        effect={"effect_name_or_resource_id": 特效名称, "start": int(轨道开始时间*1000000), "duration": int(持续时间*1000000)}
+        
+        if 特效组:
+            特效组.append(effect)
+            return (特效组,)
+        else:
+            return ([effect],)
 
 class JyTransition:
-    """
-    转场
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "transition": (list(transitionDict.keys()),),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
-                "meida_out":("MEIDA",),
+                "转场名称": ("STRING",{"default": "","tooltip": "剪映内置的转场名称或资源ID"}),
+                "持续时间": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "转场持续时间（秒）"}),
+                "前媒体": ("MEDIA_GROUP",),
             },
             "optional": {
-                "meida_in":("MEIDA",),
-                "meida_group":("媒体组",)
+                "后媒体": ("MEDIA_GROUP",),
             }
         }
 
-    RETURN_TYPES = ("转场","媒体组",)
-    RETURN_NAMES = ("转场","图片/视频组",)
-    OUTPUT_NODE = False
-    FUNCTION = "jy_transition"
+    def jy_transition(self, 转场名称, 持续时间, 前媒体, 后媒体=None, 媒体组=[]):
+        if 后媒体:
+            媒体组.extend(前媒体)
+            媒体组.extend(后媒体)
+        else:
+            媒体组.extend(前媒体)
+        
+        transition = {"transition": 转场名称, "duration": int(持续时间*1000000)}
+        return (媒体组, transition)
 
-    CATEGORY = "剪映节点"
-
-    def jy_transition(self, transition, duration,meida_out,meida_in=None,meida_group=[]):
-        meida_group=[*meida_group]
-        #添加转场
-        transition_data: TransitionData = tools.generate_transition_data(
-            name_or_resource_id=transition,  # 转场名称（可以是内置的转场名称，也可以是剪映本身的转场资源id）
-            duration=int(duration*1000000),  # 转场持续时间 
-        )
-        meida_out['transition_data']=transition_data
-        meida_group.append(meida_out)
-        transition=[meida_out]
-        if meida_in:
-            meida_group.append(meida_in)
-            transition.append(meida_in)
-        return (transition,meida_group,)
-    
 class JyAnimationIn:
-    """
-    入场动画
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "animation": (list(animationInDict.keys()),),
-                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "入场动画的起始时间永远为0（即便设置了其他起始时间，也会被忽略）(秒)"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "动画名称": ("STRING",{"default": "","tooltip": "剪映内置的入场动画名称或资源ID"}),
+                "开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "动画开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "动画持续时间（秒）"}),
             }
         }
 
     RETURN_TYPES = ("ANIMATION_IN",)
     RETURN_NAMES = ("入场动画",)
-    OUTPUT_NODE = False
     FUNCTION = "jy_animation_in"
-
     CATEGORY = "剪映节点"
 
-    def jy_animation_in(self, animation, start, duration):
-        return (tools.generate_animation_data(
-            name_or_resource_id=animation,  # 动画名称（可以是内置的动画名称，也可以是剪映本身的动画资源id）
-            start=int(start*1000000),  # 入场动画的起始时间永远为0（即便设置了其他起始时间，也会被忽略）。（这是一个相对素材片段的时间，不是时间轴上的绝对时间）
-            duration=int(duration*1000000),  # 动画持续时间
-            animation_type="in",  # 动画类型
-        ),)
+    def jy_animation_in(self, 动画名称, 开始时间, 持续时间):
+        animation_data = {
+            "animation_name_or_resource_id": 动画名称,
+            "start": int(开始时间*1000000),
+            "duration": int(持续时间*1000000),
+            "animation_type": "in"
+        }
+        return (animation_data,)
 
 class JyAnimationGroup:
-    """
-    入场动画
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "animation": (list(animationGroupDict.keys()),),
-                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "动画开始时间(秒)"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "动画名称": ("STRING",{"default": "","tooltip": "剪映内置的组合动画名称或资源ID"}),
+                "开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "动画开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "动画持续时间（秒）"}),
             }
         }
 
-    RETURN_TYPES = ("动画组",)
-    RETURN_NAMES = ("入场动画",)
-    OUTPUT_NODE = False
+    RETURN_TYPES = ("ANIMATION_GROUP",)
+    RETURN_NAMES = ("组合动画",)
     FUNCTION = "jy_animation_group"
-
     CATEGORY = "剪映节点"
 
-    def jy_animation_group(self, animation, start, duration):
-        animation_type="组",  # 动画类型
-        return (tools.generate_animation_data(
-            name_or_resource_id=animation,  # 动画名称（可以是内置的动画名称，也可以是剪映本身的动画资源id）
-            start=int(start*1000000),  # 动画开始时间
-            duration=int(duration*1000000), # 动画持续时间
-            animation_type="group",  # 动画类型
-        ),)
-    
+    def jy_animation_group(self, 动画名称, 开始时间, 持续时间):
+        animation_data = {
+            "animation_name_or_resource_id": 动画名称,
+            "start": int(开始时间*1000000),
+            "duration": int(持续时间*1000000),
+            "animation_type": "组"
+        }
+        return (animation_data,)
+
 class JyAnimationOut:
-    """
-    出场动画
-    """
-    def __init__(self):
-        pass
-    
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "animation": (list(animationOutDict.keys()),),
-                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "出场动画的起始时间永远为0（具体的时间会根据素材片段的长度自动计算)(秒)"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "动画名称": ("STRING",{"default": "","tooltip": "剪映内置的出场动画名称或资源ID"}),
+                "开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "动画开始时间（秒）"}),
+                "持续时间": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "动画持续时间（秒）"}),
             }
         }
 
     RETURN_TYPES = ("ANIMATION_OUT",)
     RETURN_NAMES = ("出场动画",)
-    OUTPUT_NODE = False
     FUNCTION = "jy_animation_out"
-
     CATEGORY = "剪映节点"
 
-    def jy_animation_out(self, animation, start, duration):
-        return (tools.generate_animation_data(
-            name_or_resource_id=animation,  # 动画名称（可以是内置的动画名称，也可以是剪映本身的动画资源id）
-            start=int(start*1000000),  # 出场动画的起始时间永远为0（具体的时间会根据素材片段的长度自动计算）。（这是一个相对素材片段的时间，不是时间轴上的绝对时间）
-            duration=int(duration*1000000),  # 动画持续时间
-            animation_type="out",  # 动画类型
-        ),)
-    
+    def jy_animation_out(self, 动画名称, 开始时间, 持续时间):
+        animation_data = {
+            "animation_name_or_resource_id": 动画名称,
+            "start": int(开始时间*1000000),
+            "duration": int(持续时间*1000000),
+            "animation_type": "out"
+        }
+        return (animation_data,)
 
-class JyMultiMediaGroup:
-    def __init__(self):
-        pass
-
+class media_group:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "meida0": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
             },
             "optional": {
-                "meida1": ("MEIDA,ANIMATION_MEIDA,TRANSITION", ),
+                "媒体组": ("MEDIA_GROUP",),
+                "音频组": ("AUDIO_GROUP",),
+                "字幕组": ("CAPTIONS_GROUP",),
+                "特效组": ("EFFECT_GROUP",),
             }
         }
 
-    RETURN_TYPES = ("MEIDA_GROUP",)
+    RETURN_TYPES = ("MEDIA_GROUP","AUDIO_GROUP","CAPTIONS_GROUP","EFFECT_GROUP")
+    RETURN_NAMES = ("媒体组","音频组","字幕组","特效组")
     FUNCTION = "media_group"
-    OUTPUT_NODE = False
     CATEGORY = "剪映节点"
 
     def media_group(self, **kwargs):
-       
-        mediaList=[]
-        for arg in kwargs:
-            if arg.startswith('meida'):
-                if type(kwargs[arg]) == list:
-                    mediaList.extend(kwargs[arg])
-                else:
-                    mediaList.append(kwargs[arg])
+        媒体组 = kwargs.get("媒体组", [])
+        音频组 = kwargs.get("音频组", [])
+        字幕组 = kwargs.get("字幕组", [])
+        特效组 = kwargs.get("特效组", [])
+        return (媒体组, 音频组, 字幕组, 特效组)
 
-        return (mediaList, )
-    
-class JyMultiAudioGroup:
-    def __init__(self):
-        pass
-
+class JyAudio2captionsGroup:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "audio0": ("JY_AUDIO", ),
+                "模型": ("WHISPER_MODEL",),
+                "文件路径": ("STRING",{"default": "","tooltip": "音频文件路径"}),
+                "轨道开始时间": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "字幕在轨道上的开始时间（秒）"}),
+                "颜色": ("STRING",{"default": "#FFFFFF","tooltip": "字幕颜色"}),
+                "字体大小": ("FLOAT", {"default": 60.0, "min": 1.0, "max": 200.0, "step": 1.0,"tooltip": "字幕字体大小"}),
+                "X轴位移": ("FLOAT", {"default": 0.0, "min": -2000.0, "max": 2000.0, "step": 1.0,"tooltip": "X轴位移"}),
+                "Y轴位移": ("FLOAT", {"default": 0.0, "min": -2000.0, "max": 2000.0, "step": 1.0,"tooltip": "Y轴位移"}),
             },
             "optional": {
-                "audio1": ("JY_AUDIO", ),
-            }
-        }
-
-    RETURN_TYPES = ("AUDIO_GROUP",)
-    FUNCTION = "audio_group"
-    OUTPUT_NODE = False
-    CATEGORY = "剪映节点"
-
-    def audio_group(self, **kwargs):
-       
-        mediaList=[]
-        for arg in kwargs:
-            if arg.startswith('audio'):
-                mediaList.append(kwargs[arg])
-
-        return (mediaList, )
-    
-class JyMultiCaptionsGroup:
-    def __init__(self):
-        pass
-
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "captions0": ("JY_CAPTIONS", ),
-            },
-            "optional": {
-                "captions1": ("JY_CAPTIONS", ),
-            }
-        }
-
-    RETURN_TYPES = ("CAPTIONS_GROUP",)
-    FUNCTION = "captions_group"
-    OUTPUT_NODE = False
-    CATEGORY = "剪映节点"
-
-    def captions_group(self, **kwargs):
-       
-        mediaList=[]
-        for arg in kwargs:
-            if arg.startswith('captions'):
-                mediaList.append(kwargs[arg])
-
-        return (mediaList, )
-    
-class JyMultiEffectGroup:
-    def __init__(self):
-        pass
-
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "effect0": ("JY_EFFECT", ),
-            },
-            "optional": {
-                "effect1": ("JY_EFFECT", ),
-            }
-        }
-
-    RETURN_TYPES = ("EFFECT_GROUP",)
-    FUNCTION = "effect_group"
-    OUTPUT_NODE = False
-    CATEGORY = "剪映节点"
-
-    def effect_group(self, **kwargs):
-       
-        mediaList=[]
-        for arg in kwargs:
-            if arg.startswith('effect'):
-                mediaList.append(kwargs[arg])
-
-        return (mediaList, )
-
-class JyAudio2CaptionsGroup:
-    def __init__(self):
-        pass
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "model":(["tiny","base","small","medium","large-v1","large-v2","large-v3"],{"default": "medium"}),
-                "file_path": ("STRING",{"default": "","tooltip": "音频地址"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "草稿添加时间（秒）"}),
-                "color": ("STRING",{"default": "#FFFFFF","tooltip": "字幕颜色"}),
-                "size": ("FLOAT", {"default": 8.0, "min": 0.0, "max":300, "step": 1.0,"tooltip": "字幕大小"}),
-                "transform_x": ("FLOAT", {"default": 0.0, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "水平位移, 单位为半个画布宽"}),
-                "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "垂直位移, 单位为半个画布高"}),
-            },
-            "optional": {
-                "captions_group":("CAPTIONS_GROUP",)
+                "字幕组": ("CAPTIONS_GROUP",),
             }
         }
 
     RETURN_TYPES = ("CAPTIONS_GROUP",)
     RETURN_NAMES = ("字幕组",)
-    OUTPUT_NODE = False
     FUNCTION = "jy_audio2captions_group"
-
     CATEGORY = "剪映节点"
 
-    def jy_audio2captions_group(self,model, file_path,start_at_track,color,size,transform_x,transform_y,captions_group=[]):
-        import whisper
-        if not os.path.exists(file_path):
-            raise Exception('对应文件不存在')
-        model = whisper.load_model(model)
-        result = model.transcribe(file_path)
+    def jy_audio2captions_group(self, 模型, 文件路径, 轨道开始时间, 颜色, 字体大小, X轴位移, Y轴位移, 字幕组=[]):
+        if not os.path.exists(文件路径):
+            raise ValueError(f"文件不存在: {文件路径}")
+        
+        result = 模型.transcribe(文件路径)
         segments = result["segments"]
-        captions_group=[*captions_group]
-        for i in range(len(segments)):
-            text = segments[i]["text"]
-            start=start_at_track+segments[i]["start"]
-            end=segments[i]["end"]
-            duration=end-start
-            captions={"subtitle": text,"color":color,"size":size, "start_at_track": int(start*1000000), "duration": int(duration*1000000)}
-            captions['clip_settings']=Clip_settings(transform_y=transform_y,transform_x=transform_x)
-            captions_group.append(captions)
-        return (captions_group,)
+        
+        for segment in segments:
+            text = segment["text"].strip()
+            start = segment["start"] + 轨道开始时间
+            end = segment["end"] + 轨道开始时间
+            持续时间 = end-start
+            captions = {"subtitle": text,"color":颜色,"size":字体大小,"transform_x":X轴位移,"transform_y":Y轴位移, "start_at_track": int(start*1000000), "duration": int(持续时间*1000000)}
+            字幕组.append(captions)
+        
+        return (字幕组,)
 
 class JySaveDraft:
-    def __init__(self):
-        pass
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "文件名前缀": ("STRING",{"default": "剪映草稿"}),
+            },
+            "optional": {
+                "媒体组": ("MEDIA_GROUP",),
+                "音频组": ("AUDIO_GROUP",),
+                "字幕组": ("CAPTIONS_GROUP",),
+                "特效组": ("EFFECT_GROUP",),
+            }
+        }
 
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("草稿路径",)
+    FUNCTION = "save_draft"
+    CATEGORY = "剪映节点"
+    OUTPUT_NODE = True
+
+    def save_draft(self, 文件名前缀, 媒体组=[], 音频组=[], 字幕组=[], 特效组=[]):
+        draft = Draft()
+        
+        for media in 媒体组:
+            draft.add_media(**media)
+        for audio in 音频组:
+            draft.add_media(**audio)
+        for caption in 字幕组:
+            draft.add_subtitle(**caption)
+        for effect in 特效组:
+            draft.add_effect(**effect)
+        
+        foldername = os.path.join(folder_paths.get_output_directory(), "剪映草稿")
+        if not os.path.exists(foldername):
+            os.makedirs(foldername)
+        
+        filename = f"{文件名前缀}_{int(time.time())}.draft"
+        file_path = os.path.join(foldername, filename)
+        
+        draft.save(file_path)
+        return (file_path,)
+
+class JySaveOutDraft:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "文件名前缀": ("STRING",{"default": "剪映草稿"}),
+                "输出文件夹": ("STRING",{"default": "","tooltip": "输出文件夹路径，留空使用默认输出目录"}),
+            },
+            "optional": {
+                "媒体组": ("MEDIA_GROUP",),
+                "音频组": ("AUDIO_GROUP",),
+                "字幕组": ("CAPTIONS_GROUP",),
+                "特效组": ("EFFECT_GROUP",),
+            }
+        }
+
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("草稿路径",)
+    FUNCTION = "save_out_draft"
+    CATEGORY = "剪映节点"
+    OUTPUT_NODE = True
+
+    def save_out_draft(self, 文件名前缀, 输出文件夹, 媒体组=[], 音频组=[], 字幕组=[], 特效组=[]):
+        draft = Draft()
+        
+        for media in 媒体组:
+            draft.add_media(**media)
+        for audio in 音频组:
+            draft.add_media(**audio)
+        for caption in 字幕组:
+            draft.add_subtitle(**caption)
+        for effect in 特效组:
+            draft.add_effect(**effect)
+        
+        if 输出文件夹:
+            foldername = 输出文件夹
+        else:
+            foldername = folder_paths.get_output_directory()
+        
+        if not os.path.exists(foldername):
+            os.makedirs(foldername)
+        
+        filename = f"{文件名前缀}_{int(time.time())}.draft"
+        file_path = os.path.join(foldername, filename)
+        
+        draft.save(file_path)
+        return (file_path,)
+
+importStr=r"""import json
+import os
+import shutil
+
+def replace_text(contentText, data):
+    for i in data:
+        primary=i["primary"]
+        newfile=i["newfile"]
+        #获取newfile的绝对路径
+        newfile=os.path.abspath(newfile)
+        #替换
+        contentText.replace(primary,newfile)
+    return contentText
+
+inputPath=input("请输入剪映草稿目录:")
+if not inputPath:
+    inputPath=r"C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft/"
+#当前目录文件夹名称
+folderName=os.path.basename(os.getcwd())
+print(f"正在处理“{folderName}”目录下的剪映草稿...")
+
+data=json.load(open("file_counter.json"))
+contentText=""
+with open("draft_content.json","r") as f:
+    contentText=f.read()
+
+with open("draft_content.json","w") as f:
+    f.write(replace_text(contentText,data))
+
+with open("draft_meta_info.json","r") as f:
+    contentText=f.read()
+
+with open("draft_meta_info.json","w") as f:
+    f.write(replace_text(contentText,data))
+
+newDraftsPath=os.path.join(inputPath,folderName)
+os.makedirs(newDraftsPath,exist_ok=True)
+
+shutil.copyfile("draft_content.json",os.path.join(newDraftsPath,"draft_content.json"))
+shutil.copyfile("draft_meta_info.json",os.path.join(newDraftsPath,"draft_meta_info.json"))"""
+
+importBat='''python importDraft.py
+pause
+'''
+class JySaveOutDraft:
+    def __init__(self):
+        self.output_dir = folder_paths.get_temp_directory()
+        self.type = "temp"
     @classmethod
     def INPUT_TYPES(cls):
         return {
