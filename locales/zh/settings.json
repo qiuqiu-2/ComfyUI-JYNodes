@@ -1,0 +1,72 @@
+{
+  "JianYing_OutputPath": {
+    "name": "剪映输出路径",
+    "tooltip": "设置剪映项目文件的保存路径"
+  },
+  "JianYing_TemplatePath": {
+    "name": "剪映模板路径",
+    "tooltip": "设置剪映模板文件的存储路径"
+  },
+  "JianYing_AutoSave": {
+    "name": "剪映自动保存",
+    "tooltip": "启用后自动保存剪映项目到草稿"
+  },
+  "JianYing_DebugMode": {
+    "name": "剪映调试模式",
+    "tooltip": "启用后显示详细的调试信息"
+  },
+  "JianYing_Quality": {
+    "name": "剪映输出质量",
+    "tooltip": "设置剪映项目的输出质量等级",
+    "options": {
+      "Low": "低质量",
+      "Medium": "中等质量", 
+      "High": "高质量",
+      "Ultra": "超高质量"
+    }
+  },
+  "JianYing_Format": {
+    "name": "剪映输出格式",
+    "tooltip": "设置剪映项目的输出文件格式",
+    "options": {
+      "MP4": "MP4视频",
+      "MOV": "MOV视频",
+      "AVI": "AVI视频",
+      "GIF": "GIF动图"
+    }
+  },
+  "JianYing_FrameRate": {
+    "name": "剪映帧率设置",
+    "tooltip": "设置剪映项目的输出帧率"
+  },
+  "JianYing_Resolution": {
+    "name": "剪映分辨率",
+    "tooltip": "设置剪映项目的输出分辨率",
+    "options": {
+      "720p": "1280x720 (HD)",
+      "1080p": "1920x1080 (Full HD)",
+      "2K": "2560x1440 (2K)",
+      "4K": "3840x2160 (4K)"
+    }
+  },
+  "JianYing_AudioBitrate": {
+    "name": "剪映音频码率",
+    "tooltip": "设置剪映项目音频的码率"
+  },
+  "JianYing_VideoBitrate": {
+    "name": "剪映视频码率",
+    "tooltip": "设置剪映项目视频的码率"
+  },
+  "JianYing_EnableHardwareAcceleration": {
+    "name": "剪映硬件加速",
+    "tooltip": "启用GPU硬件加速以提高渲染速度"
+  },
+  "JianYing_EnableAudioNormalization": {
+    "name": "剪映音频标准化",
+    "tooltip": "启用音频音量标准化处理"
+  },
+  "JianYing_EnableColorCorrection": {
+    "name": "剪映色彩校正",
+    "tooltip": "启用自动色彩校正和增强"
+  }
+}
