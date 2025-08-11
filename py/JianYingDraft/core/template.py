@@ -1,10 +1,6 @@
 """
  * @file   : materialVideo.py
- * @time   : 15:23
- * @date   : 2024/3/23
- * @mail   : 9727005@qq.com
- * @creator: ShanDong Xiedali
- * @company: HiLand & RainyTop
+ * @date   : 2025/8/8
 """
 import time
 from ..utils import tools

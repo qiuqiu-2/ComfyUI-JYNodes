@@ -1,10 +1,6 @@
 """
  * @file   : dataStruct.py
- * @time   : 上午8:19
- * @date   : 2024/4/10
- * @mail   : 9727005@qq.com
- * @creator: ShanDong Xiedali
- * @company: HiLand & RainyTop
+ * @date   : 2025/8/11
 """
 from dataclasses import dataclass
 from typing import Literal

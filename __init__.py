@@ -14,7 +14,7 @@ NODE_CLASS_MAPPINGS = {}
 NODE_DISPLAY_NAME_MAPPINGS = {}
 
 if init():
-    print("Loading ComfyUI-JYNodes (剪映专版)")
+    print("Loading ComfyUI-JYNodes (剪映节点)")
     py = get_ext_dir("py")
     files = os.listdir(py)
     for file in files:
@@ -29,10 +29,5 @@ if init():
             print("节点：'"+name+"'导入异常",e)
 
 WEB_DIRECTORY = "./js" 
-
-# 剪映专版：移除对不存在路径的引用
-# file_directory = os.path.dirname(os.path.abspath(__file__))
-# PromptServer.instance.app.router.add_static("/wechatauth/static", file_directory+"/pages/static")
-# PromptServer.instance.app.router.add_static("/paint-board", file_directory+"/pages/paint-board")
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS","WEB_DIRECTORY"]

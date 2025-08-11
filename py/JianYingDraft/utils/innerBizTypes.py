@@ -1,10 +1,6 @@
 """
  * @file   : innerBizTypes.py
- * @time   : 上午9:39
- * @date   : 2024/4/10
- * @mail   : 9727005@qq.com
- * @creator: ShanDong Xiedali
- * @company: HiLand & RainyTop
+ * @date   : 2025/8/11
 """
 
 effectDict = {
@@ -119,7 +115,7 @@ animationOutDict = {
     "旋转2": "6798334070653719054"
 }
 
-# 组合动画
+# 动画组
 animationGroupDict = {
     "缩放": "6759078592740594184",
     "抖入放大": "6761360765925462536",

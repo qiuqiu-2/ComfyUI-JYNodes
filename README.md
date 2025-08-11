@@ -95,21 +95,6 @@ pip install pymediainfo requests
 - 可直接用剪映App打开继续编辑
 - 支持自定义分辨率和帧率
 
-## 📁 文件结构
-```
-ComfyUI_JYNodes/
-├── JYNodes.py                 # 主节点注册文件
-├── JYNodes.json               # 节点配置
-├── py/JianYing.py            # 剪映节点实现
-├── py/JianYingDraft/         # 剪映核心库
-│   ├── core/                 # 核心功能模块
-│   ├── utils/                # 工具函数
-│   └── template/             # 模板文件
-├── js/JySaveOutDraft.js      # 界面交互
-├── config/translations.csv   # 翻译配置
-└── README.md                 # 本文档
-```
-
 ## 🎯 使用场景
 - **批量视频制作** - 快速生成多个视频草稿
 - **模板化内容** - 基于模板批量制作
@@ -133,3 +118,5 @@ ComfyUI_JYNodes/
 
 ---
 **享受高效的剪映视频制作体验！**
+
+项目源自：https://gitee.com/yanlang0123/ComfyUI_Lam

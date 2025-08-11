@@ -1,10 +1,6 @@
 """
- * @file   : materialFactory.py
- * @time   : 16:10
- * @date   : 2024/3/24
- * @mail   : 9727005@qq.com
- * @creator: ShanDong Xiedali
- * @company: HiLand & RainyTop
+ * @file   : materialFactory.pys
+ * @date   : 2025/8/8
 """
 import os
 
