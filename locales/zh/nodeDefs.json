@@ -3,15 +3,15 @@
     "display_name": "剪映带动画的媒体",
     "inputs": {
       "file_path": {
-        "name": "文件路径",
+        "name": "媒体路径",
         "tooltip": "图片或视频文件的完整路径"
       },
       "start_in_media": {
-        "name": "媒体内开始时间",
+        "name": "开始时间",
         "tooltip": "在原始媒体中的开始时间（秒）"
       },
       "start_at_track": {
-        "name": "轨道开始时间",
+        "name": "起始时间",
         "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
       },
       "duration": {
@@ -48,15 +48,15 @@
     "display_name": "剪映添加媒体",
     "inputs": {
       "file_path": {
-        "name": "文件路径",
+        "name": "媒体路径",
         "tooltip": "图片或视频文件的完整路径"
       },
       "start_in_media": {
-        "name": "媒体内开始时间",
+        "name": "开始时间",
         "tooltip": "在原始媒体中的开始时间（秒）"
       },
       "start_at_track": {
-        "name": "轨道开始时间",
+        "name": "起始时间",
         "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
       },
       "duration": {
@@ -81,15 +81,15 @@
     "display_name": "剪映添加音频",
     "inputs": {
       "file_path": {
-        "name": "文件路径",
+        "name": "音频路径",
         "tooltip": "音频文件的完整路径"
       },
       "start_in_media": {
-        "name": "音频内开始时间",
+        "name": "开始时间",
         "tooltip": "在原始音频中的开始时间（秒）"
       },
       "start_at_track": {
-        "name": "轨道开始时间",
+        "name": "起始时间",
         "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
       },
       "duration": {
@@ -163,7 +163,7 @@
         "tooltip": "要应用的特效名称"
       },
       "start_at_track": {
-        "name": "开始时间",
+        "name": "起始时间",
         "tooltip": "特效在草稿中的开始时间（秒）"
       },
       "duration": {
@@ -195,14 +195,25 @@
         "name": "持续时间",
         "tooltip": "转场的持续时间（秒）"
       },
-      "start_at_track": {
-        "name": "开始时间",
-        "tooltip": "转场在草稿中的开始时间（秒）"
+      "meida_out": {
+        "name": "媒体结尾",
+        "tooltip": "要转场的媒体的结尾"
+      },
+      "meida_in": {
+        "name": "媒体开头",
+        "tooltip": "要转场的媒体的开头"
+      },
+      "meida_group": {
+        "name": "媒体组",
+        "tooltip": "要转场的媒体组"
       }
     },
     "outputs": {
       "0": {
         "name": "转场"
+      },
+      "1": {
+        "name": "媒体组"
       }
     }
   },
@@ -216,6 +227,10 @@
       "duration": {
         "name": "持续时间",
         "tooltip": "入场动画的持续时间（秒）"
+      },
+      "start": {
+        "name": "起始时间",
+        "tooltip": "入场动画在草稿中的开始时间（秒）"
       }
     },
     "outputs": {
@@ -234,6 +249,10 @@
       "duration": {
         "name": "持续时间",
         "tooltip": "动画组的持续时间（秒）"
+      },
+      "start": {
+        "name": "起始时间",
+        "tooltip": "动画在草稿中的开始时间（秒）"
       }
     },
     "outputs": {
@@ -252,6 +271,10 @@
       "duration": {
         "name": "持续时间",
         "tooltip": "出场动画的持续时间（秒）"
+      },
+      "start": {
+        "name": "起始时间",
+        "tooltip": "出场动画在草稿中的开始时间（秒）"
       }
     },
     "outputs": {
@@ -264,24 +287,12 @@
     "display_name": "剪映媒体组",
     "inputs": {
       "media0": {
-        "name": "媒体0",
-        "tooltip": "第零个媒体素材"
-      },
-      "media1": {
         "name": "媒体1",
         "tooltip": "第一个媒体素材"
       },
-      "media2": {
+      "media1": {
         "name": "媒体2",
         "tooltip": "第二个媒体素材"
-      },
-      "media3": {
-        "name": "媒体3",
-        "tooltip": "第三个媒体素材"
-      },
-      "media4": {
-        "name": "媒体4",
-        "tooltip": "第四个媒体素材"
       }
     },
     "outputs": {
@@ -294,24 +305,12 @@
     "display_name": "剪映音频组",
     "inputs": {
       "audio0": {
-        "name": "音频0",
-        "tooltip": "第零个音频素材"
-      },
-      "audio1": {
         "name": "音频1",
         "tooltip": "第一个音频素材"
       },
-      "audio2": {
+      "audio1": {
         "name": "音频2",
-        "tooltip": "第二个音频素材"
-      },
-      "audio3": {
-        "name": "音频3",
-        "tooltip": "第三个音频素材"
-      },
-      "audio4": {
-        "name": "音频4",
-        "tooltip": "第四个音频素材"
+        "tooltip": "第二音频素材"
       }
     },
     "outputs": {
@@ -324,12 +323,12 @@
     "display_name": "剪映字幕组",
     "inputs": {
       "captions0": {
-        "name": "字幕0",
-        "tooltip": "第零个字幕"
-      },
-      "captions1": {
         "name": "字幕1",
         "tooltip": "第一个字幕"
+      },
+      "captions1": {
+        "name": "字幕2",
+        "tooltip": "第二个字幕"
       }
     },
     "outputs": {
@@ -342,12 +341,12 @@
     "display_name": "剪映特效组",
     "inputs": {
       "effect0": {
-        "name": "特效0",
-        "tooltip": "第零个特效"
-      },
-      "effect1": {
         "name": "特效1",
         "tooltip": "第一个特效"
+      },
+      "effect1": {
+        "name": "特效2",
+        "tooltip": "第二个特效"
       }
     },
     "outputs": {
@@ -364,11 +363,11 @@
         "tooltip": "语音识别模型"
       },
       "file_path": {
-        "name": "音频文件路径",
+        "name": "音频路径",
         "tooltip": "要转换的音频文件完整路径"
       },
       "start_at_track": {
-        "name": "开始时间",
+        "name": "起始时间",
         "tooltip": "字幕在草稿中的开始时间（秒）"
       },
       "color": {
@@ -402,7 +401,7 @@
     "display_name": "剪映保存草稿",
     "inputs": {
       "medias": {
-        "name": "媒体",
+        "name": "媒体组",
         "tooltip": "要保存的媒体素材"
       },
       "draft_name": {
@@ -418,15 +417,15 @@
         "tooltip": "草稿的分辨率高度"
       },
       "audios": {
-        "name": "音频",
+        "name": "音频组",
         "tooltip": "要保存的音频素材"
       },
       "effects": {
-        "name": "特效",
+        "name": "特效组",
         "tooltip": "要保存的特效"
       },
       "captions": {
-        "name": "字幕",
+        "name": "字幕组",
         "tooltip": "要保存的字幕"
       }
     },
@@ -440,7 +439,7 @@
     "display_name": "剪映草稿下载",
     "inputs": {
       "medias": {
-        "name": "媒体",
+        "name": "媒体组",
         "tooltip": "要导出的媒体素材"
       },
       "draft_name": {
@@ -456,15 +455,15 @@
         "tooltip": "草稿的分辨率高度"
       },
       "audios": {
-        "name": "音频",
+        "name": "音频组",
         "tooltip": "要导出的音频素材"
       },
       "effects": {
-        "name": "特效",
+        "name": "特效组",
         "tooltip": "要导出的特效"
       },
       "captions": {
-        "name": "字幕",
+        "name": "字幕组",
         "tooltip": "要导出的字幕"
       }
     },
