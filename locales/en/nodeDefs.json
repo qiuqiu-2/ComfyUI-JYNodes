@@ -1,0 +1,476 @@
+{
+  "JyMediaAnimation": {
+    "display_name": "剪映带动画的媒体",
+    "inputs": {
+      "file_path": {
+        "name": "媒体路径",
+        "tooltip": "图片或视频文件的完整路径"
+      },
+      "start_in_media": {
+        "name": "开始时间",
+        "tooltip": "在原始媒体中的开始时间（秒）"
+      },
+      "start_at_track": {
+        "name": "起始时间",
+        "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "媒体在草稿中的持续时间（秒）"
+      },
+      "meida_group": {
+        "name": "媒体组",
+        "tooltip": "输入的媒体组，用于连续添加多个媒体"
+      },
+      "animation_in": {
+        "name": "入场动画",
+        "tooltip": "媒体的入场动画效果"
+      },
+      "animation_group": {
+        "name": "动画组",
+        "tooltip": "媒体的中途动画效果"
+      },
+      "animation_out": {
+        "name": "出场动画",
+        "tooltip": "媒体的出场动画效果"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "带动画的媒体"
+      },
+      "1": {
+        "name": "媒体组"
+      }
+    }
+  },
+  "JyMediaNative": {
+    "display_name": "剪映添加媒体",
+    "inputs": {
+      "file_path": {
+        "name": "媒体路径",
+        "tooltip": "图片或视频文件的完整路径"
+      },
+      "start_in_media": {
+        "name": "开始时间",
+        "tooltip": "在原始媒体中的开始时间（秒）"
+      },
+      "start_at_track": {
+        "name": "起始时间",
+        "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "媒体在草稿中的持续时间（秒）"
+      },
+      "meida_group": {
+        "name": "媒体组",
+        "tooltip": "输入的媒体组，用于连续添加多个媒体"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "媒体"
+      },
+      "1": {
+        "name": "媒体组"
+      }
+    }
+  },
+  "JyAudioNative": {
+    "display_name": "剪映添加音频",
+    "inputs": {
+      "file_path": {
+        "name": "音频路径",
+        "tooltip": "音频文件的完整路径"
+      },
+      "start_in_media": {
+        "name": "开始时间",
+        "tooltip": "在原始音频中的开始时间（秒）"
+      },
+      "start_at_track": {
+        "name": "起始时间",
+        "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "音频在草稿中的持续时间（秒）"
+      },
+      "audio_group": {
+        "name": "音频组",
+        "tooltip": "输入的音频组，用于连续添加多个音频"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "音频"
+      },
+      "1": {
+        "name": "音频组"
+      }
+    }
+  },
+  "JyCaptionsNative": {
+    "display_name": "剪映添加字幕",
+    "inputs": {
+      "text": {
+        "name": "字幕内容",
+        "tooltip": "要显示的字幕文字内容"
+      },
+      "color": {
+        "name": "字幕颜色",
+        "tooltip": "字幕文字的颜色，支持十六进制颜色值，如#FFFFFF表示白色"
+      },
+      "size": {
+        "name": "字幕大小",
+        "tooltip": "字幕文字的大小"
+      },
+      "transform_x": {
+        "name": "水平位置",
+        "tooltip": "字幕的水平位置，单位为半个画布宽度的比例，0为中心，-1为最左，1为最右"
+      },
+      "transform_y": {
+        "name": "垂直位置",
+        "tooltip": "字幕的垂直位置，单位为半个画布高度的比例，0为中心，-1为最下，1为最上"
+      },
+      "start_at_track": {
+        "name": "开始时间",
+        "tooltip": "字幕在草稿中的开始时间（秒）"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "字幕显示的持续时间（秒）"
+      },
+      "captions_group": {
+        "name": "字幕组",
+        "tooltip": "输入的字幕组，用于连续添加多个字幕"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "字幕"
+      },
+      "1": {
+        "name": "字幕组"
+      }
+    }
+  },
+  "JyEffectNative": {
+    "display_name": "剪映添加特效",
+    "inputs": {
+      "effect": {
+        "name": "特效名称",
+        "tooltip": "要应用的特效名称"
+      },
+      "start_at_track": {
+        "name": "起始时间",
+        "tooltip": "特效在草稿中的开始时间（秒）"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "特效的持续时间（秒）"
+      },
+      "effect_group": {
+        "name": "特效组",
+        "tooltip": "输入的特效组，用于连续添加多个特效"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "特效"
+      },
+      "1": {
+        "name": "特效组"
+      }
+    }
+  },
+  "JyTransition": {
+    "display_name": "剪映添加转场",
+    "inputs": {
+      "transition": {
+        "name": "转场名称",
+        "tooltip": "要应用的转场效果名称"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "转场的持续时间（秒）"
+      },
+      "meida_out": {
+        "name": "媒体结尾",
+        "tooltip": "要转场的媒体的结尾"
+      },
+      "meida_in": {
+        "name": "媒体开头",
+        "tooltip": "要转场的媒体的开头"
+      },
+      "meida_group": {
+        "name": "媒体组",
+        "tooltip": "要转场的媒体组"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "转场"
+      },
+      "1": {
+        "name": "媒体组"
+      }
+    }
+  },
+  "JyAnimationIn": {
+    "display_name": "剪映入场动画",
+    "inputs": {
+      "animation": {
+        "name": "动画名称",
+        "tooltip": "入场动画的名称"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "入场动画的持续时间（秒）"
+      },
+      "start": {
+        "name": "起始时间",
+        "tooltip": "入场动画在草稿中的开始时间（秒）"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "入场动画"
+      }
+    }
+  },
+  "JyAnimationGroup": {
+    "display_name": "剪映动画组",
+    "inputs": {
+      "animation": {
+        "name": "动画名称",
+        "tooltip": "动画组的名称"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "动画组的持续时间（秒）"
+      },
+      "start": {
+        "name": "起始时间",
+        "tooltip": "动画在草稿中的开始时间（秒）"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "动画组"
+      }
+    }
+  },
+  "JyAnimationOut": {
+    "display_name": "剪映出场动画 ",
+    "inputs": {
+      "animation": {
+        "name": "动画名称",
+        "tooltip": "出场动画的名称"
+      },
+      "duration": {
+        "name": "持续时间",
+        "tooltip": "出场动画的持续时间（秒）"
+      },
+      "start": {
+        "name": "起始时间",
+        "tooltip": "出场动画在草稿中的开始时间（秒）"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "出场动画"
+      }
+    }
+  },
+  "JyMultiMediaGroup": {
+    "display_name": "剪映媒体组",
+    "inputs": {
+      "media0": {
+        "name": "媒体1",
+        "tooltip": "第一个媒体素材"
+      },
+      "media1": {
+        "name": "媒体2",
+        "tooltip": "第二个媒体素材"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "媒体组"
+      }
+    }
+  },
+  "JyMultiAudioGroup": {
+    "display_name": "剪映音频组",
+    "inputs": {
+      "audio0": {
+        "name": "音频1",
+        "tooltip": "第一个音频素材"
+      },
+      "audio1": {
+        "name": "音频2",
+        "tooltip": "第二音频素材"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "音频组"
+      }
+    }
+  },
+  "JyMultiCaptionsGroup": {
+    "display_name": "剪映字幕组",
+    "inputs": {
+      "captions0": {
+        "name": "字幕1",
+        "tooltip": "第一个字幕"
+      },
+      "captions1": {
+        "name": "字幕2",
+        "tooltip": "第二个字幕"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "字幕组"
+      }
+    }
+  },
+  "JyMultiEffectGroup": {
+    "display_name": "剪映特效组",
+    "inputs": {
+      "effect0": {
+        "name": "特效1",
+        "tooltip": "第一个特效"
+      },
+      "effect1": {
+        "name": "特效2",
+        "tooltip": "第二个特效"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "特效组"
+      }
+    }
+  },
+  "JyAudio2CaptionsGroup": {
+    "display_name": "剪映音频转字幕",
+    "inputs": {
+      "model": {
+        "name": "模型",
+        "tooltip": "语音识别模型"
+      },
+      "file_path": {
+        "name": "音频路径",
+        "tooltip": "要转换的音频文件完整路径"
+      },
+      "start_at_track": {
+        "name": "起始时间",
+        "tooltip": "字幕在草稿中的开始时间（秒）"
+      },
+      "color": {
+        "name": "字幕颜色",
+        "tooltip": "字幕文字的颜色，支持十六进制颜色值，如#FFFFFF表示白色"
+      },
+      "size": {
+        "name": "字幕大小",
+        "tooltip": "字幕文字的大小"
+      },
+      "transform_x": {
+        "name": "水平位置",
+        "tooltip": "字幕的水平位置，单位为半个画布宽度的比例，0为中心，-1为最左，1为最右"
+      },
+      "transform_y": {
+        "name": "垂直位置",
+        "tooltip": "字幕的垂直位置，单位为半个画布高度的比例，0为中心，-1为最下，1为最上"
+      },
+      "captions_group": {
+        "name": "字幕组",
+        "tooltip": "输入的字幕组，用于连续添加多个字幕"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "字幕组"
+      }
+    }
+  },
+  "JySaveDraft": {
+    "display_name": "剪映保存草稿",
+    "inputs": {
+      "medias": {
+        "name": "媒体组",
+        "tooltip": "要保存的媒体素材"
+      },
+      "draft_name": {
+        "name": "草稿名称",
+        "tooltip": "保存的草稿项目名称"
+      },
+      "width": {
+        "name": "宽度",
+        "tooltip": "草稿的分辨率宽度"
+      },
+      "height": {
+        "name": "高度",
+        "tooltip": "草稿的分辨率高度"
+      },
+      "audios": {
+        "name": "音频组",
+        "tooltip": "要保存的音频素材"
+      },
+      "effects": {
+        "name": "特效组",
+        "tooltip": "要保存的特效"
+      },
+      "captions": {
+        "name": "字幕组",
+        "tooltip": "要保存的字幕"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "草稿时长"
+      }
+    }
+  },
+  "JySaveOutDraft": {
+    "display_name": "剪映草稿下载",
+    "inputs": {
+      "medias": {
+        "name": "媒体组",
+        "tooltip": "要导出的媒体素材"
+      },
+      "draft_name": {
+        "name": "草稿名称",
+        "tooltip": "导出的草稿项目名称"
+      },
+      "width": {
+        "name": "宽度",
+        "tooltip": "草稿的分辨率宽度"
+      },
+      "height": {
+        "name": "高度",
+        "tooltip": "草稿的分辨率高度"
+      },
+      "audios": {
+        "name": "音频组",
+        "tooltip": "要导出的音频素材"
+      },
+      "effects": {
+        "name": "特效组",
+        "tooltip": "要导出的特效"
+      },
+      "captions": {
+        "name": "字幕组",
+        "tooltip": "要导出的字幕"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "草稿时长"
+      }
+    }
+  }
+}
