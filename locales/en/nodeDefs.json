@@ -1,475 +1,475 @@
 {
   "JyMediaAnimation": {
-    "display_name": "剪映带动画的媒体",
+    "display_name": "JianYing Animated Media",
     "inputs": {
       "file_path": {
-        "name": "媒体路径",
-        "tooltip": "图片或视频文件的完整路径"
+        "name": "Media Path",
+        "tooltip": "Full path to image or video file"
       },
       "start_in_media": {
-        "name": "开始时间",
-        "tooltip": "在原始媒体中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time in original media (seconds)"
       },
       "start_at_track": {
-        "name": "起始时间",
-        "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
+        "name": "Track Start Time",
+        "tooltip": "Start time in draft track (seconds), 0 means automatically append after previous material"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "媒体在草稿中的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of media in draft (seconds)"
       },
       "meida_group": {
-        "name": "媒体组",
-        "tooltip": "输入的媒体组，用于连续添加多个媒体"
+        "name": "Media Group",
+        "tooltip": "Input media group for adding multiple media continuously"
       },
       "animation_in": {
-        "name": "入场动画",
-        "tooltip": "媒体的入场动画效果"
+        "name": "In Animation",
+        "tooltip": "Media entrance animation effect"
       },
       "animation_group": {
-        "name": "动画组",
-        "tooltip": "媒体的中途动画效果"
+        "name": "Animation Group",
+        "tooltip": "Media middle animation effect"
       },
       "animation_out": {
-        "name": "出场动画",
-        "tooltip": "媒体的出场动画效果"
+        "name": "Out Animation",
+        "tooltip": "Media exit animation effect"
       }
     },
     "outputs": {
       "0": {
-        "name": "带动画的媒体"
+        "name": "Animated Media"
       },
       "1": {
-        "name": "媒体组"
+        "name": "Media Group"
       }
     }
   },
   "JyMediaNative": {
-    "display_name": "剪映添加媒体",
+    "display_name": "JianYing Add Media",
     "inputs": {
       "file_path": {
-        "name": "媒体路径",
-        "tooltip": "图片或视频文件的完整路径"
+        "name": "Media Path",
+        "tooltip": "Full path to image or video file"
       },
       "start_in_media": {
-        "name": "开始时间",
-        "tooltip": "在原始媒体中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time in original media (seconds)"
       },
       "start_at_track": {
-        "name": "起始时间",
-        "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
+        "name": "Track Start Time",
+        "tooltip": "Start time in draft track (seconds), 0 means automatically append after previous material"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "媒体在草稿中的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of media in draft (seconds)"
       },
       "meida_group": {
-        "name": "媒体组",
-        "tooltip": "输入的媒体组，用于连续添加多个媒体"
+        "name": "Media Group",
+        "tooltip": "Input media group for adding multiple media continuously"
       }
     },
     "outputs": {
       "0": {
-        "name": "媒体"
+        "name": "Media"
       },
       "1": {
-        "name": "媒体组"
+        "name": "Media Group"
       }
     }
   },
   "JyAudioNative": {
-    "display_name": "剪映添加音频",
+    "display_name": "JianYing Add Audio",
     "inputs": {
       "file_path": {
-        "name": "音频路径",
-        "tooltip": "音频文件的完整路径"
+        "name": "Audio Path",
+        "tooltip": "Full path to audio file"
       },
       "start_in_media": {
-        "name": "开始时间",
-        "tooltip": "在原始音频中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time in original audio (seconds)"
       },
       "start_at_track": {
-        "name": "起始时间",
-        "tooltip": "在草稿轨道中的开始时间（秒），为0时自动拼接在上一个素材末尾"
+        "name": "Track Start Time",
+        "tooltip": "Start time in draft track (seconds), 0 means automatically append after previous material"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "音频在草稿中的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of audio in draft (seconds)"
       },
       "audio_group": {
-        "name": "音频组",
-        "tooltip": "输入的音频组，用于连续添加多个音频"
+        "name": "Audio Group",
+        "tooltip": "Input audio group for adding multiple audios continuously"
       }
     },
     "outputs": {
       "0": {
-        "name": "音频"
+        "name": "Audio"
       },
       "1": {
-        "name": "音频组"
+        "name": "Audio Group"
       }
     }
   },
   "JyCaptionsNative": {
-    "display_name": "剪映添加字幕",
+    "display_name": "JianYing Add Captions",
     "inputs": {
       "text": {
-        "name": "字幕内容",
-        "tooltip": "要显示的字幕文字内容"
+        "name": "Caption Text",
+        "tooltip": "Caption text content to display"
       },
       "color": {
-        "name": "字幕颜色",
-        "tooltip": "字幕文字的颜色，支持十六进制颜色值，如#FFFFFF表示白色"
+        "name": "Caption Color",
+        "tooltip": "Caption text color, supports hex color values, e.g., #FFFFFF for white"
       },
       "size": {
-        "name": "字幕大小",
-        "tooltip": "字幕文字的大小"
+        "name": "Caption Size",
+        "tooltip": "Caption text size"
       },
       "transform_x": {
-        "name": "水平位置",
-        "tooltip": "字幕的水平位置，单位为半个画布宽度的比例，0为中心，-1为最左，1为最右"
+        "name": "Horizontal Position",
+        "tooltip": "Horizontal position of caption, proportion of half canvas width, 0 is center, -1 is leftmost, 1 is rightmost"
       },
       "transform_y": {
-        "name": "垂直位置",
-        "tooltip": "字幕的垂直位置，单位为半个画布高度的比例，0为中心，-1为最下，1为最上"
+        "name": "Vertical Position",
+        "tooltip": "Vertical position of caption, proportion of half canvas height, 0 is center, -1 is bottommost, 1 is topmost"
       },
       "start_at_track": {
-        "name": "开始时间",
-        "tooltip": "字幕在草稿中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time of caption in draft (seconds)"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "字幕显示的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of caption display (seconds)"
       },
       "captions_group": {
-        "name": "字幕组",
-        "tooltip": "输入的字幕组，用于连续添加多个字幕"
+        "name": "Captions Group",
+        "tooltip": "Input captions group for adding multiple captions continuously"
       }
     },
     "outputs": {
       "0": {
-        "name": "字幕"
+        "name": "Caption"
       },
       "1": {
-        "name": "字幕组"
+        "name": "Captions Group"
       }
     }
   },
   "JyEffectNative": {
-    "display_name": "剪映添加特效",
+    "display_name": "JianYing Add Effect",
     "inputs": {
       "effect": {
-        "name": "特效名称",
-        "tooltip": "要应用的特效名称"
+        "name": "Effect Name",
+        "tooltip": "Name of effect to apply"
       },
       "start_at_track": {
-        "name": "起始时间",
-        "tooltip": "特效在草稿中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time of effect in draft (seconds)"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "特效的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of effect (seconds)"
       },
       "effect_group": {
-        "name": "特效组",
-        "tooltip": "输入的特效组，用于连续添加多个特效"
+        "name": "Effect Group",
+        "tooltip": "Input effect group for adding multiple effects continuously"
       }
     },
     "outputs": {
       "0": {
-        "name": "特效"
+        "name": "Effect"
       },
       "1": {
-        "name": "特效组"
+        "name": "Effect Group"
       }
     }
   },
   "JyTransition": {
-    "display_name": "剪映添加转场",
+    "display_name": "JianYing Add Transition",
     "inputs": {
       "transition": {
-        "name": "转场名称",
-        "tooltip": "要应用的转场效果名称"
+        "name": "Transition Name",
+        "tooltip": "Name of transition effect to apply"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "转场的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of transition (seconds)"
       },
       "meida_out": {
-        "name": "媒体结尾",
-        "tooltip": "要转场的媒体的结尾"
+        "name": "Media End",
+        "tooltip": "End of media to transition from"
       },
       "meida_in": {
-        "name": "媒体开头",
-        "tooltip": "要转场的媒体的开头"
+        "name": "Media Start",
+        "tooltip": "Start of media to transition to"
       },
       "meida_group": {
-        "name": "媒体组",
-        "tooltip": "要转场的媒体组"
+        "name": "Media Group",
+        "tooltip": "Media group to apply transition"
       }
     },
     "outputs": {
       "0": {
-        "name": "转场"
+        "name": "Transition"
       },
       "1": {
-        "name": "媒体组"
+        "name": "Media Group"
       }
     }
   },
   "JyAnimationIn": {
-    "display_name": "剪映入场动画",
+    "display_name": "JianYing In Animation",
     "inputs": {
       "animation": {
-        "name": "动画名称",
-        "tooltip": "入场动画的名称"
+        "name": "Animation Name",
+        "tooltip": "Name of entrance animation"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "入场动画的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of entrance animation (seconds)"
       },
       "start": {
-        "name": "起始时间",
-        "tooltip": "入场动画在草稿中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time of entrance animation in draft (seconds)"
       }
     },
     "outputs": {
       "0": {
-        "name": "入场动画"
+        "name": "In Animation"
       }
     }
   },
   "JyAnimationGroup": {
-    "display_name": "剪映动画组",
+    "display_name": "JianYing Animation Group",
     "inputs": {
       "animation": {
-        "name": "动画名称",
-        "tooltip": "动画组的名称"
+        "name": "Animation Name",
+        "tooltip": "Name of animation group"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "动画组的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of animation group (seconds)"
       },
       "start": {
-        "name": "起始时间",
-        "tooltip": "动画在草稿中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time of animation in draft (seconds)"
       }
     },
     "outputs": {
       "0": {
-        "name": "动画组"
+        "name": "Animation Group"
       }
     }
   },
   "JyAnimationOut": {
-    "display_name": "剪映出场动画 ",
+    "display_name": "JianYing Out Animation",
     "inputs": {
       "animation": {
-        "name": "动画名称",
-        "tooltip": "出场动画的名称"
+        "name": "Animation Name",
+        "tooltip": "Name of exit animation"
       },
       "duration": {
-        "name": "持续时间",
-        "tooltip": "出场动画的持续时间（秒）"
+        "name": "Duration",
+        "tooltip": "Duration of exit animation (seconds)"
       },
       "start": {
-        "name": "起始时间",
-        "tooltip": "出场动画在草稿中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time of exit animation in draft (seconds)"
       }
     },
     "outputs": {
       "0": {
-        "name": "出场动画"
+        "name": "Out Animation"
       }
     }
   },
   "JyMultiMediaGroup": {
-    "display_name": "剪映媒体组",
+    "display_name": "JianYing Media Group",
     "inputs": {
       "media0": {
-        "name": "媒体1",
-        "tooltip": "第一个媒体素材"
+        "name": "Media 1",
+        "tooltip": "First media material"
       },
       "media1": {
-        "name": "媒体2",
-        "tooltip": "第二个媒体素材"
+        "name": "Media 2",
+        "tooltip": "Second media material"
       }
     },
     "outputs": {
       "0": {
-        "name": "媒体组"
+        "name": "Media Group"
       }
     }
   },
   "JyMultiAudioGroup": {
-    "display_name": "剪映音频组",
+    "display_name": "JianYing Audio Group",
     "inputs": {
       "audio0": {
-        "name": "音频1",
-        "tooltip": "第一个音频素材"
+        "name": "Audio 1",
+        "tooltip": "First audio material"
       },
       "audio1": {
-        "name": "音频2",
-        "tooltip": "第二音频素材"
+        "name": "Audio 2",
+        "tooltip": "Second audio material"
       }
     },
     "outputs": {
       "0": {
-        "name": "音频组"
+        "name": "Audio Group"
       }
     }
   },
   "JyMultiCaptionsGroup": {
-    "display_name": "剪映字幕组",
+    "display_name": "JianYing Captions Group",
     "inputs": {
       "captions0": {
-        "name": "字幕1",
-        "tooltip": "第一个字幕"
+        "name": "Caption 1",
+        "tooltip": "First caption"
       },
       "captions1": {
-        "name": "字幕2",
-        "tooltip": "第二个字幕"
+        "name": "Caption 2",
+        "tooltip": "Second caption"
       }
     },
     "outputs": {
       "0": {
-        "name": "字幕组"
+        "name": "Captions Group"
       }
     }
   },
   "JyMultiEffectGroup": {
-    "display_name": "剪映特效组",
+    "display_name": "JianYing Effect Group",
     "inputs": {
       "effect0": {
-        "name": "特效1",
-        "tooltip": "第一个特效"
+        "name": "Effect 1",
+        "tooltip": "First effect"
       },
       "effect1": {
-        "name": "特效2",
-        "tooltip": "第二个特效"
+        "name": "Effect 2",
+        "tooltip": "Second effect"
       }
     },
     "outputs": {
       "0": {
-        "name": "特效组"
+        "name": "Effect Group"
       }
     }
   },
   "JyAudio2CaptionsGroup": {
-    "display_name": "剪映音频转字幕",
+    "display_name": "JianYing Audio to Captions",
     "inputs": {
       "model": {
-        "name": "模型",
-        "tooltip": "语音识别模型"
+        "name": "Model",
+        "tooltip": "Speech recognition model"
       },
       "file_path": {
-        "name": "音频路径",
-        "tooltip": "要转换的音频文件完整路径"
+        "name": "Audio Path",
+        "tooltip": "Full path to audio file to convert"
       },
       "start_at_track": {
-        "name": "起始时间",
-        "tooltip": "字幕在草稿中的开始时间（秒）"
+        "name": "Start Time",
+        "tooltip": "Start time of caption in draft (seconds)"
       },
       "color": {
-        "name": "字幕颜色",
-        "tooltip": "字幕文字的颜色，支持十六进制颜色值，如#FFFFFF表示白色"
+        "name": "Caption Color",
+        "tooltip": "Caption text color, supports hex color values, e.g., #FFFFFF for white"
       },
       "size": {
-        "name": "字幕大小",
-        "tooltip": "字幕文字的大小"
+        "name": "Caption Size",
+        "tooltip": "Caption text size"
       },
       "transform_x": {
-        "name": "水平位置",
-        "tooltip": "字幕的水平位置，单位为半个画布宽度的比例，0为中心，-1为最左，1为最右"
+        "name": "Horizontal Position",
+        "tooltip": "Horizontal position of caption, proportion of half canvas width, 0 is center, -1 is leftmost, 1 is rightmost"
       },
       "transform_y": {
-        "name": "垂直位置",
-        "tooltip": "字幕的垂直位置，单位为半个画布高度的比例，0为中心，-1为最下，1为最上"
+        "name": "Vertical Position",
+        "tooltip": "Vertical position of caption, proportion of half canvas height, 0 is center, -1 is bottommost, 1 is topmost"
       },
       "captions_group": {
-        "name": "字幕组",
-        "tooltip": "输入的字幕组，用于连续添加多个字幕"
+        "name": "Captions Group",
+        "tooltip": "Input captions group for adding multiple captions continuously"
       }
     },
     "outputs": {
       "0": {
-        "name": "字幕组"
+        "name": "Captions Group"
       }
     }
   },
   "JySaveDraft": {
-    "display_name": "剪映保存草稿",
+    "display_name": "JianYing Save Draft",
     "inputs": {
       "medias": {
-        "name": "媒体组",
-        "tooltip": "要保存的媒体素材"
+        "name": "Media Group",
+        "tooltip": "Media materials to save"
       },
       "draft_name": {
-        "name": "草稿名称",
-        "tooltip": "保存的草稿项目名称"
+        "name": "Draft Name",
+        "tooltip": "Name of draft project to save"
       },
       "width": {
-        "name": "宽度",
-        "tooltip": "草稿的分辨率宽度"
+        "name": "Width",
+        "tooltip": "Draft resolution width"
       },
       "height": {
-        "name": "高度",
-        "tooltip": "草稿的分辨率高度"
+        "name": "Height",
+        "tooltip": "Draft resolution height"
       },
       "audios": {
-        "name": "音频组",
-        "tooltip": "要保存的音频素材"
+        "name": "Audio Group",
+        "tooltip": "Audio materials to save"
       },
       "effects": {
-        "name": "特效组",
-        "tooltip": "要保存的特效"
+        "name": "Effect Group",
+        "tooltip": "Effects to save"
       },
       "captions": {
-        "name": "字幕组",
-        "tooltip": "要保存的字幕"
+        "name": "Captions Group",
+        "tooltip": "Captions to save"
       }
     },
     "outputs": {
       "0": {
-        "name": "草稿时长"
+        "name": "Draft Duration"
       }
     }
   },
   "JySaveOutDraft": {
-    "display_name": "剪映草稿下载",
+    "display_name": "JianYing Export Draft",
     "inputs": {
       "medias": {
-        "name": "媒体组",
-        "tooltip": "要导出的媒体素材"
+        "name": "Media Group",
+        "tooltip": "Media materials to export"
       },
       "draft_name": {
-        "name": "草稿名称",
-        "tooltip": "导出的草稿项目名称"
+        "name": "Draft Name",
+        "tooltip": "Name of draft project to export"
       },
       "width": {
-        "name": "宽度",
-        "tooltip": "草稿的分辨率宽度"
+        "name": "Width",
+        "tooltip": "Draft resolution width"
       },
       "height": {
-        "name": "高度",
-        "tooltip": "草稿的分辨率高度"
+        "name": "Height",
+        "tooltip": "Draft resolution height"
       },
       "audios": {
-        "name": "音频组",
-        "tooltip": "要导出的音频素材"
+        "name": "Audio Group",
+        "tooltip": "Audio materials to export"
       },
       "effects": {
-        "name": "特效组",
-        "tooltip": "要导出的特效"
+        "name": "Effect Group",
+        "tooltip": "Effects to export"
       },
       "captions": {
-        "name": "字幕组",
-        "tooltip": "要导出的字幕"
+        "name": "Captions Group",
+        "tooltip": "Captions to export"
       }
     },
     "outputs": {
       "0": {
-        "name": "草稿时长"
+        "name": "Draft Duration"
       }
     }
   }
