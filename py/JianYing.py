@@ -733,21 +733,4 @@ NODE_CLASS_MAPPINGS = {
     "JySaveOutDraft":JySaveOutDraft,
 }
 
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "JyMediaAnimation": "剪映带动画的媒体",
-    "JyMediaNative": "剪映添加媒体",
-    "JyAudioNative": "剪映添加音频",
-    "JyCaptionsNative": "剪映添加字幕",
-    "JyEffectNative": "剪映添加特效",
-    "JyTransition": "剪映添加转场",
-    "JyAnimationIn": "剪映入场动画",
-    "JyAnimationGroup": "剪映动画组",
-    "JyAnimationOut": "剪映出场动画",
-    "JyMultiMediaGroup": "剪映媒体组",
-    "JyMultiAudioGroup": "剪映音频组",
-    "JyMultiCaptionsGroup": "剪映字幕组",
-    "JyMultiEffectGroup": "剪映特效组",
-    "JyAudio2CaptionsGroup": "剪映音频转字幕",
-    "JySaveDraft": "剪映保存草稿",
-    "JySaveOutDraft": "剪映草稿下载",
-}
+NODE_DISPLAY_NAME_MAPPINGS = {}
