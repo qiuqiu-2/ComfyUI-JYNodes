@@ -22,10 +22,10 @@ class JyMediaAnimation:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "file_path": ("STRING",{"default": "","tooltip": "图片/视频地址"}),
-                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "视频开始时间（秒）"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "在草稿的第几秒开始（为0时默认拼接在上一个素材的末尾）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "file_path": ("STRING",{"default": ""}),
+                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
             },
             "optional": {
                 "meida_group":("MEIDA_GROUP",),
@@ -70,10 +70,10 @@ class JyMediaNative:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "file_path": ("STRING",{"default": "","tooltip": "图片/视频地址"}),
-                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "视频开始时间（秒）"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "在草稿的第几秒开始（为0时默认拼接在上一个素材的末尾）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "file_path": ("STRING",{"default": ""}),
+                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
             },
             "optional": {
                 "meida_group":("MEIDA_GROUP",)
@@ -106,10 +106,10 @@ class JyAudioNative:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "file_path": ("STRING",{"default": "","tooltip": "音频地址"}),
-                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "音频开始时间（秒）"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "在草稿的第几秒开始（为0时默认拼接在上一个素材的末尾）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "file_path": ("STRING",{"default": ""}),
+                "start_in_media": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
             },
             "optional": {
                 "audio_group":("AUDIO_GROUP",)
@@ -143,13 +143,13 @@ class JyCaptionsNative:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "text": ("STRING",{"default": "","multiline": True,"tooltip": "字幕内容"}),
-                "color": ("STRING",{"default": "#FFFFFF","tooltip": "字幕颜色"}),
-                "size": ("FLOAT", {"default": 8.0, "min": 0.0, "max":300, "step": 1.0,"tooltip": "字幕大小"}),
-                "transform_x": ("FLOAT", {"default": 0.0, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "水平位移, 单位为半个画布宽"}),
-                "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "垂直位移, 单位为半个画布高"}),
-                "start_at_track": ("FLOAT", {"default": 1.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "在草稿的第几秒开始（为0时默认拼接在上一个素材的末尾）"}),
-                "duration": ("FLOAT", {"default": 0.1, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "text": ("STRING",{"default": "","multiline": True}),
+                "color": ("STRING",{"default": "#FFFFFF"}),
+                "size": ("FLOAT", {"default": 8.0, "min": 0.0, "max":300, "step": 1.0}),
+                "transform_x": ("FLOAT", {"default": 0.0, "min": -1.0, "max":1.0, "step": 0.1}),
+                "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1}),
+                "start_at_track": ("FLOAT", {"default": 1.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.1, "min": 0.0, "max": 9999999, "step": 0.01}),
             },
             "optional": {
                 "captions_group":("CAPTIONS_GROUP",)
@@ -164,10 +164,10 @@ class JyCaptionsNative:
 
     CATEGORY = "剪映节点"
 
-    def jy_captions(self, 字幕内容, 字体颜色, 字体大小, 水平位置x, 垂直位置y, 起始时间, 持续时间, 字幕组=[]):
-        captions_group=[*字幕组]
-        captions={"subtitle": 字幕内容,"color":字体颜色,"size":字体大小, "start_at_track": int(起始时间*1000000), "duration": int(持续时间*1000000)}
-        captions['clip_settings']=Clip_settings(transform_y=垂直位置y,transform_x=水平位置x)
+    def jy_captions(self, text, color, size, transform_x, transform_y, start_at_track, duration, captions_group=[]):
+        captions_group=[*captions_group]
+        captions={"subtitle": text,"color":color,"size":size, "start_at_track": int(start_at_track*1000000), "duration": int(duration*1000000)}
+        captions['clip_settings']=Clip_settings(transform_y=transform_y,transform_x=transform_x)
         captions_group.append(captions)
         return (captions,captions_group,)
 
@@ -183,8 +183,8 @@ class JyEffectNative:
         return {
             "required": {
                 "effect": (list(effectDict.keys()),),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "在草稿的第几秒开始（为0时默认拼接在上一个素材的末尾）"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
             },
             "optional": {
                 "effect_group":("EFFECT_GROUP",)
@@ -218,7 +218,7 @@ class JyTransition:
         return {
             "required": {
                 "transition": (list(transitionDict.keys()),),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
                 "meida_out":("MEIDA",),
             },
             "optional": {
@@ -261,8 +261,8 @@ class JyAnimationIn:
         return {
             "required": {
                 "animation": (list(animationInDict.keys()),),
-                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "入场动画的起始时间永远为0（即便设置了其他起始时间，也会被忽略）(秒)"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
             }
         }
 
@@ -293,8 +293,8 @@ class JyAnimationGroup:
         return {
             "required": {
                 "animation": (list(animationGroupDict.keys()),),
-                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "动画开始时间(秒)"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
             }
         }
 
@@ -325,8 +325,8 @@ class JyAnimationOut:
         return {
             "required": {
                 "animation": (list(animationOutDict.keys()),),
-                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "出场动画的起始时间永远为0（具体的时间会根据素材片段的长度自动计算)(秒)"}),
-                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01,"tooltip": "持续时间（秒）"}),
+                "start": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "duration": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 9999999, "step": 0.01}),
             }
         }
 
@@ -488,12 +488,12 @@ class JyAudio2CaptionsGroup:
         return {
             "required": {
                 "model":(["tiny","base","small","medium","large-v1","large-v2","large-v3"],{"default": "medium"}),
-                "file_path": ("STRING",{"default": "","tooltip": "音频地址"}),
-                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01,"tooltip": "字幕起始时间（秒）"}),
-                "color": ("STRING",{"default": "#FFFFFF","tooltip": "字幕颜色"}),
-                "size": ("FLOAT", {"default": 8.0, "min": 0.0, "max":300, "step": 1.0,"tooltip": "字幕大小"}),
-                "transform_x": ("FLOAT", {"default": 0.0, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "水平位移, 单位为半个画布宽"}),
-                "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1,"tooltip": "垂直位移, 单位为半个画布高"}),
+                "file_path": ("STRING",{"default": ""}),
+                "start_at_track": ("FLOAT", {"default": 0.0, "min": 0.0, "max":9999999, "step": 0.01}),
+                "color": ("STRING",{"default": "#FFFFFF"}),
+                "size": ("FLOAT", {"default": 8.0, "min": 0.0, "max":300, "step": 1.0}),
+                "transform_x": ("FLOAT", {"default": 0.0, "min": -1.0, "max":1.0, "step": 0.1}),
+                "transform_y": ("FLOAT", {"default": -0.8, "min": -1.0, "max":1.0, "step": 0.1}),
             },
             "optional": {
                 "captions_group":("CAPTIONS_GROUP",)
@@ -537,9 +537,9 @@ class JySaveDraft:
         return {
             "required": {
                 "medias": ("MEIDA_GROUP", ),
-                "draft_name": ("STRING", {"default": "Draft", "tooltip": "保存的草稿名称"}),
-                "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿宽"}),
-                "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿高"}),
+                "draft_name": ("STRING", {"default": "Draft"}),
+                "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1}),
+                "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1}),
             },
             "optional": {
                 "audios": ("AUDIO_GROUP", ),
@@ -632,9 +632,9 @@ class JySaveOutDraft:
         return {
             "required": {
                 "medias": ("MEIDA_GROUP", ),
-                "draft_name": ("STRING", {"default": "Draft", "tooltip": "保存的草稿名称"}),
-                "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿宽"}),
-                "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1, "tooltip": "草稿高"}),
+                "draft_name": ("STRING", {"default": "Draft"}),
+                "width": ("INT", {"default": 1920, "min": 1, "max": 9999999, "step": 1}),
+                "height": ("INT", {"default": 1080, "min": 1, "max": 9999999, "step": 1}),
             },
             "optional": {
                 "audios": ("AUDIO_GROUP", ),
@@ -733,4 +733,21 @@ NODE_CLASS_MAPPINGS = {
     "JySaveOutDraft":JySaveOutDraft,
 }
 
-NODE_DISPLAY_NAME_MAPPINGS = {}
+NODE_DISPLAY_NAME_MAPPINGS = {
+    "JyMediaAnimation": "JyMediaAnimation",
+    "JyMediaNative": "JyMediaNative",
+    "JyAudioNative": "JyAudioNative",
+    "JyCaptionsNative": "JyCaptionsNative",
+    "JyEffectNative": "JyEffectNative",
+    "JyTransition": "JyTransition",
+    "JyAnimationIn": "JyAnimationIn",
+    "JyAnimationGroup": "JyAnimationGroup",
+    "JyAnimationOut": "JyAnimationOut",
+    "JyMultiMediaGroup": "JyMultiMediaGroup",
+    "JyMultiAudioGroup": "JyMultiAudioGroup",
+    "JyMultiCaptionsGroup": "JyMultiCaptionsGroup",
+    "JyMultiEffectGroup": "JyMultiEffectGroup",
+    "JyAudio2CaptionsGroup": "JyAudio2CaptionsGroup",
+    "JySaveDraft": "JySaveDraft",
+    "JySaveOutDraft": "JySaveOutDraft",
+}
